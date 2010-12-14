@@ -1,0 +1,28 @@
+Actions:
+Find x amount of y item (from creatures or people)
+Generate people who have the item and will give it to you either for free or for something they want
+                Generate critters that will drop the item
+Kill x amount of y critter (kill by yourself or request help  from people)
+                Generate critters to kill.
+                Generate people who will kill z critters for you
+Get x information for y perosn (Talk to person or trade for other tasks)
+                Generate person with information
+                Generate task person will request to get information
+Things:
+Items
+Critters
+Conversations
+ 
+Quest:
+Person
+Wanted Action
+Explination (Conversation)
+                Pick from pool of explinations based on wanted action
+Must have: description of thing(s) needed, where to get said thing(s) and why they are needed
+                (Optional): other dialog for other people about where to get the thing
+Dungeon:
+Critters
+Keys (item)
+Locked Doors
+Items
+People?

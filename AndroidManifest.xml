@@ -1,0 +1,8 @@
+<manifest package="com.modiopera.aventura" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" android:versionCode="1">
+	<application>
+		<activity android:launchMode="standard" android:icon="@drawable/icon" android:multiprocess="false" android:enabled="true" android:screenOrientation="landscape" android:name=".AdvenDroid"><intent-filter><category android:name="android.intent.category.LAUNCHER"></category>
+<action android:name="android.intent.action.MAIN"></action>
+</intent-filter>
+</activity>
+	</application>
+</manifest>

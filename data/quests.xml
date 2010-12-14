@@ -1,0 +1,85 @@
+<quests>
+	<quest type="item">
+		<explination>
+			<conversation>
+                <dialog>I really need {item}.</dialog>
+				<node>
+					<action topic="need" />
+					<player>Where can I find {item}?</player>
+					<dialog>I'm not sure... It's in a place.</dialog>
+					<node id="more">
+						<player>Um, can you give me a bit more information?</player>
+						<dialog>No...</dialog>
+					</node>
+					<node>
+						<player>What place?</player>
+						<dialog>You know. The place with the guy...</dialog>
+						<node ref="more" />
+					</node>
+                    <node>
+                        <player>Do you know someone that might have {item}?</player>
+                        <dialog>Yeah, there is a guy.</dialog>
+                        <node>
+                            <player>Does this guy have a name?</player>
+                            <dialog>Ummm, it might be Tom.</dialog>
+                            <node>
+                                <player>Might be?</player>
+                                <dialog>Yeah... or Dick.</dialog>
+                                <node>
+                                    <player>Dick?</player>
+                                    <dialog>It might have been Stanley...</dialog>
+                                    <node>
+                                        <player>I feel like you are messing with me</player>
+                                        <dialog>This is no joke!</dialog>
+                                    </node>
+                                </node>
+                            </node>
+                        </node>
+                    </node>
+				</node>
+				<exit>We're done here.</exit>
+			</conversation>
+		</explination>
+		<information>
+			<conversation topic="need">
+                <dialog>What do you need to know?</dialog>
+				<node>
+					<player>Would you know anything about {item}?</player>
+					<dialog>Nope, can't say that I do...</dialog>
+					<node>
+						<player>I'm looking for a uh, place...</player>
+						<dialog>That isn't enough information...</dialog>
+						<node>
+							<player>I know right! {main} says there is some "stuff" there.</player>
+							<dialog>Hmmm... Really.</dialog>
+							<node>
+								<player>Wait... Do you know something?</player>
+								<dialog>Well obviously {main} is talking about the dungeon.</dialog>
+							</node>
+						</node>
+					</node>
+				</node>
+				<exit>I've got nothing left to say to you.</exit>
+			</conversation>
+		</information>
+		<solution>
+			<conversation cha="7" topic="need">
+                <dialog>You want information.  I've got it.</dialog>
+				<node>
+					<player>Would you know anything about {item}?</player>
+					<dialog>I happen to have that.</dialog>
+					<node>
+						<player>Really!? Would you mind giving it to me?</player>
+						<dialog>There are things I would need you to do first.  Go ahead ask me what I want.</dialog>
+					</node>
+					<node>
+						<player>It is imperative you give it to me at once!</player>
+						<dialog>Well, since you said it that way.</dialog>
+						<action item="{item}" />
+					</node>
+				</node>
+                <exit>I've gotta go.</exit>
+			</conversation>
+		</solution>
+	</quest>
+</quests>

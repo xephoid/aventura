@@ -1,0 +1,86 @@
+<people>
+	<person name="Barak Obama">
+		<portrait url="http://modiopera.com/images/icons/barak_obama.ico" />
+		<initialGreeting>Hello.</initialGreeting>
+		<greeting>What can I help you with today?</greeting>
+		<introduction>I am Barak Obama.  President of the United States.</introduction>
+	</person>
+	<person name="Beyonce">
+		<portrait url="http://modiopera.com/images/icons/beyonce_knowles.ico" />
+		<initialGreeting>Hi there.</initialGreeting>
+		<greeting>What's up?</greeting>
+		<introduction>I'm Beyonce! I sing and dance, plus I've done some acting.</introduction>
+	</person>
+	<person name="Brad">
+		<portrait url="http://modiopera.com/images/icons/brad_pitt.ico" />
+		<initialGreeting>Sup.</initialGreeting>
+		<greeting>Yo.</greeting>
+		<introduction>I'm Brad Pitt.  Actor.</introduction>
+	</person>
+	<person name="David">
+		<portrait url="http://modiopera.com/images/icons/david_beckham.ico" />
+		<initialGreeting>Hi.</initialGreeting>
+		<greeting>Hello.</greeting>
+		<introduction>I'm David Beckham.  I'm pretty good at Football.  Or as you Americans call it Soccer.</introduction>
+	</person>
+	<person name="Denzel">
+		<portrait url="http://modiopera.com/images/icons/denzel_washington.ico" />
+		<initialGreeting>Hello there.</initialGreeting>
+		<greeting>How can I help you?</greeting>
+		<introduction>I am Denzel Washington.  I've been in a few movies.</introduction>
+	</person>
+	<person name="Derek">
+		<portrait url="http://modiopera.com/images/icons/derek_jeter.ico" />
+		<initialGreeting>Hey.</initialGreeting>
+		<greeting>Hey.</greeting>
+		<introduction>I'm Derek Jeter.  I play baseball.</introduction>
+	</person>
+	<person name="Sarah">
+		<portrait url="http://modiopera.com/images/icons/sara_palin.ico" />
+		<initialGreeting>Hiya!</initialGreeting>
+		<greeting>Hey there again!</greeting>
+		<introduction>I'm Sarah Palin.  Sure it great to meetcha!</introduction>
+	</person>
+	<person name="Katherine">
+		<portrait url="http://modiopera.com/images/icons/katherine_heigl.ico" />
+		<initialGreeting>Welcome.</initialGreeting>
+		<greeting>Good to see you again.</greeting>
+		<introduction>My name is Katherine Heigl.  I'm a semi-famous actress.</introduction>
+	</person>
+	<person name="Jennifer">
+		<portrait url="http://modiopera.com/images/icons/jennifer_love_hewitt.ico" />
+		<initialGreeting>Greetings to you.</initialGreeting>
+		<greeting>Greetings.</greeting>
+		<introduction>I am Jennifer Love Hewitt.  I used to be a famous actress.  I've also done some singing.</introduction>
+	</person>
+	<person name="Paris">
+		<portrait url="http://modiopera.com/images/icons/paris_hilton.ico" />
+		<initialGreeting>Heeeeey!</initialGreeting>
+		<greeting>Do I know you?</greeting>
+		<introduction>I'm Paris Hilton and you better not forget it.</introduction>
+	</person>
+	<person name="Lebron">
+		<portrait url="http://modiopera.com/images/icons/lebron_james.ico" />
+		<initialGreeting>Hey.</initialGreeting>
+		<greeting>Word.</greeting>
+		<introduction>Lebron James.  Professional basketball player EXTRODINARE.</introduction>
+	</person>
+	<person name="Kanye">
+		<portrait url="http://modiopera.com/images/icons/kanye_west.ico" />
+		<initialGreeting>Ja.</initialGreeting>
+		<greeting>I am being spoken to.</greeting>
+		<introduction>Call me Kanye of the West.</introduction>
+	</person>
+	<person name="Shaq">
+		<portrait url="http://modiopera.com/images/icons/shaquille_oneal.ico" />
+		<initialGreeting>Dude</initialGreeting>
+		<greeting>Duuuudde</greeting>
+		<introduction>You don't know who I am? Really?</introduction>
+	</person>
+	<person name="Seth">
+		<portrait url="http://modiopera.com/images/icons/seth_rogen.ico" />
+		<initialGreeting>Greetings to you.</initialGreeting>
+		<greeting>Hello human.</greeting>
+		<introduction>I'm Seth Rogen.  I was in a show no one remembers called Freaks and Geeks.</introduction>
+	</person>
+</people>

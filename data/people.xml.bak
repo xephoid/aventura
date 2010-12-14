@@ -1,0 +1,79 @@
+<people>
+	<person name="Guy McDude">
+		<initialGreeting>Hello there.</initialGreeting>
+		<greeting>Howdy again.</greeting>
+		<introduction>
+			My name is Guy.  Guy McDude, I live with my wife, Woman, in our farm near the outside of town.
+		</introduction>
+	</person>
+	<person name="Gerry Person">
+		<initialGreeting>Hi.</initialGreeting>
+		<greeting>What's up?</greeting>
+		<introduction>
+			Why, I'm Gerry Person.  Who wants to know?
+		</introduction>
+	</person>
+	<person name="Mr. Man">
+		<initialGreeting>Yo.</initialGreeting>
+		<greeting>Yo... Again.</greeting>
+		<introduction>
+			You may address me as Mr.Dude.
+		</introduction>
+	</person>
+	<person name="Biggs">
+		<initialGreeting>Greetings.</initialGreeting>
+		<greeting>Greetings.</greeting>
+		<introduction>
+			I'm Biggs!
+		</introduction>
+	</person>
+	<person name="Wedge">
+		<initialGreeting>Sup.</initialGreeting>
+		<greeting>What do ya need?</greeting>
+		<introduction>
+			The name's Wedge
+		</introduction>
+	</person>
+	<person name="Jay Jay">
+		<initialGreeting>Ayo!</initialGreeting>
+		<greeting>Big up yourself!</greeting>
+		<introduction>
+			I'm JayJay for shizzy.
+		</introduction>
+	</person>
+	<person name="Charlie">
+		<initialGreeting>HI!</initialGreeting>
+		<greeting>W-WHAT'S UP!?</greeting>
+		<introduction>
+			MY NAME IS CHARLIE!
+		</introduction>
+	</person>
+	<person name="Mac">
+		<initialGreeting>Oh, I didn't see you there.</initialGreeting>
+		<greeting>Uh, I'm a little busy but...</greeting>
+		<introduction>
+			Call me Mac.
+		</introduction>
+	</person>
+	<person name="Dennis">
+		<initialGreeting>Excuse me?</initialGreeting>
+		<greeting>Excuse you.</greeting>
+		<introduction>
+			I'm Dennis.
+		</introduction>
+	</person>
+	<person name="Diandra">
+		<initialGreeting>Why hello to you!</initialGreeting>
+		<greeting>Hey, nice to see you again.</greeting>
+		<introduction>
+			Most people call me Dee.  Some people call me sweet Dee, young Dee, all kindsa thing.
+		</introduction>
+	</person>
+	<person name="Frank">
+		<initialGreeting>Yeah?</initialGreeting>
+		<greeting>Whadda you want?</greeting>
+		<introduction>
+			YOU can call me Mr. Reynolds.
+		</introduction>
+	</person>
+</people>

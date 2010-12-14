@@ -1,0 +1,139 @@
+Town
+   description
+Poeple
+   name
+   description?
+Dungeun
+   maze
+
+Towns have people
+Talk to people
+Find stuff in dungeons
+
+Topics:
+Things going on in the town
+   - dialogs about the town
+Things going on in the world
+   - dialogs about world occurances
+
+Quests:
+   find a thing in a dungeon
+   find a person
+   kill things in dungeon
+   find a place?
+   get information?
+
+People
+   Pick known topics to ask about
+      - dialogs about topics
+   Ask about quests
+      - may or may not have a request
+
+Stories
+   FSM of topics
+   Quests trigger next phase of topics
+
+Dungeons
+   Maze
+   monsters
+   chests with items
+
+
+Character stats
+   Strength(STR) - damage multiplier
+   Range (RNG) - How close you have to be to an enemy to hit them
+   Inteligence (INT) - How quickly you gain experience
+   Camoflage (CAM) - How easy enemies spot you
+   Charisma (CHA) - how much people are willing to share information, give you items and do things for you
+   (Sight) - inverse of camouflage
+   Hit Points (HPS) - How much damage you can take
+
+Character types (TODO)
+   Revolutionary
+   		-Chooses to solve conflict through conversation.  Weak strength, very good at talking
+		-Str: 1, Rng: 2, Int: 8, Cam: 0, Cha: 10, Hps: 9
+		-Hiking stick
+   Rogue
+      -Str: 5, Rng: 10, Int: 3, Cam: 5, Cha: 5, Hps: 3
+      -weak power, long ranged, above average sneaking ability
+      -Pistol
+   Monk
+      - Above average strength, fights close range, gains experience quickly
+      -Str: 8, Rng: 1, Int: 10, Cam: 2, Cha: 2, Hps: 7
+      -Fists
+   Marksman
+      -Str: 10, Rng: 9, Int: 2, Cam: 4, Cha: 3, Hps: 2
+      -very powerful long ranged attacks, gains experience slowly
+      -Rifle
+   Ninja
+      -Str: 3, Rng: 7, Int: 6, Cam: 10, Cha: 1, Hps: 4
+      -average power, enemies less likely to spot, gains experience averagly...
+      -Throwing stars/dagger(sneak attack)
+   Gladiator
+		-Str: 7, Rng: 1, Int: 5, Cam: 1, Cha: 6, Hps: 10
+		-Sword	
+
+Experience:
+	Combat - enemies killed (STR, RNG, CAM) - critical bonus
+	Diplomacy - conversations "won" (CHA) - hidden conversation bits
+	Endurance - damage taken (HPS) - reduced damage change
+	Wisdom - experience gained (INT) - Experience bonus
+
+Word battles?
+
+Towns:
+
+TownVille
+Townville is a pretty average town.  It has some people, farms, a town hall.  You know, town stuff.
+
+Guy McDude
+   Intro - Hello there
+   Who? - My name is Guy.  Guy McDude, I live with my wife Lady in our farm near the outside of town.
+   Quests? - I rekon I really need one them new fangled whatchimacalleds, um you know (whispers) pesticides.  Been having problems with the crops lately so's it'd be nice to get something to git ride of those there pests.
+   Other topics: ?
+   Items held: Weed wacker
+
+Gerry Lawnman
+   Intro - Hi
+   Who? - I am Gerry Lawnman, I do lawns.  It's what I do.
+   Quests? - I need a new weed wacker, mine just broke.
+   [Evol: Husband was murdered recently.  She seems pretty wound up about it.  That's all I know.][Murder]
+   Items held: Pesticides
+
+Person Notathing
+   Intro - How's it going?
+   Who? - I'm not just A person I AM Person.  Person Notathing.  Nice to meet you.
+   Quests? - I don't like rats.  Kill some rats.  I don't care how many.
+   [Murder: I know nothing about the subject.]
+   [Lady: Not at all suprised.]
+
+Friendly the Hobo
+   Intro - Sprr channnngge?
+   Who? I am quite friendly.
+   Quests? I needs some monies.  Anythang you got really.  I have no home.
+   [Murder: Person! I him saw the other day.  I sure did see him.]
+
+Girl Female
+   Intro - Who are you?
+   Who? - I asked you first.
+   Quests? I don't want anything from you.
+   [Murder: I ain't talking to nobody.  I don't want to be next!]
+   [Mother: Only the murderer would know that.  I'm calling the police!][Sketchy]
+   [Lady: My own mother.  I should have known.]
+
+Evol Lady
+   Intro - What do you want? [Evol]
+   Who? - Who am I? You don't know who I am? You can ask someone else.
+   Quests? Leave me alone.
+   [Murder: My husband was killed a few days ago.  Who are you to pry into such matters?]
+   [Sketchy: I've never met him!]
+   [Lady: That bufoon! Why did I trust him? Ah well, maybe prison won't be so bad.  Still not as bad as being married to THAT MAN.][10XP]
+
+
+Sketchy Douche
+   Intro - ...
+   Who? - None of your business
+   Quests? - ...
+   [Murder: Why would I know anything about that? Why are you asking ME? Do I LOOK like I know anything?]
+   [Evol: Why don't you ask her daughter? Her name is Girl.][Mother]
+   [Sketchy: ...Crap I wasn't supposed to tell you that.  I'm not sure why Mrs. Lady hired ME exactly.  Or more importantly why I accepted.  Wow, I'm really bad at this...  I'm going to jail aren't I?][Lady]
