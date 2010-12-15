@@ -1,5 +1,7 @@
 <quests>
 	<quest type="item">
+		<item name="Thinga mabober">
+		</item>
 		<explination>
 			<conversation>
                 <dialog>I really need {item}.</dialog>
@@ -79,6 +81,62 @@
 					</node>
 				</node>
                 <exit>I've gotta go.</exit>
+			</conversation>
+		</solution>
+	</quest>
+	<quest>
+		<explination>
+			<conversation>
+				<dialog>Actually, I'm here to help you! What do you wish to know?</dialog>
+				<node id="start">
+					<player>What is this?</player>
+					<dialog>This is Aventura, a simple dialog engine.</dialog>
+					<node>
+						<player>Aventura?</player>
+						<dialog>Aventura means adventure in Spanish.  The platform was named after its original purpose as a tool for adventure games.</dialog>
+						<node ref="start" />
+					</node>
+					<node>
+						<player>Dialog engine?</player>
+						<dialog>
+							Yes.  This is an engine for creating dialog between a human and a computer program.
+						</dialog>
+						<node>
+							<player>I'm not sure I understand.</player>
+							<dialog>Well the simplest example is what we are doing right now.  You are currently using Aventura to talk to me.</dialog>
+						</node>
+						<node ref="start" />
+					</node>
+					<node id="how">
+						<player>How does this work?</player>
+						<dialog>The conversation we are having now is scripted via XML.</dialog>
+						<node>
+							<player>XML?</player>
+							<dialog>XML is a popular standard for formatting data</dialog>
+							<node ref="start" />
+						</node>
+					</node>
+					<node>
+						<player>What can someone do with Aventura?</player>
+						<dialog>You can easily script complex and dynamic conversations with minimal training</dialog>
+						<node>
+							<player>How are these scripts structured?</player>
+							<dialog>Think of it like a flow chart.  You start at the beginning and based on the users choices Aventura chooses the correct text to show.  It can also fire certain actions based on different events.</dialog>
+						</node>
+						<node>
+							<player>How is this dynamic?</player>
+							<dialog>Triggers can be added to the script to activate other options which where not previously available</dialog>
+						</node>
+					</node>
+				</node>
+			</conversation>
+		</explination>
+		<information>
+			<conversation>
+			</conversation>
+		</information>
+		<solution>
+			<conversation>
 			</conversation>
 		</solution>
 	</quest>

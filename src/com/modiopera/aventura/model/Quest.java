@@ -6,7 +6,6 @@ import com.modiopera.aventura.model.conversation.Conversation;
 import com.modiopera.aventura.model.conversation.Dialog;
 
 public class Quest extends GameObject {
-	private static final long serialVersionUID = -5835786052951054405L;
 	
 	private boolean completed = false;
 	private Conversation explination;

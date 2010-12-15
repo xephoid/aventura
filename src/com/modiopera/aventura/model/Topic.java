@@ -7,8 +7,6 @@ import com.modiopera.aventura.model.conversation.Conversation;
 
 public class Topic extends GameObject {
 
-	private static final long serialVersionUID = -793057833705995076L;
-	
 	private Map<Person, Conversation> conversations;
 	private boolean active = false;
 
