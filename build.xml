@@ -1,0 +1,38 @@
+<project basedir="." name="aventura" default="all">
+	<property name="target.dir" value="build" />
+	<property name="javac.source" value="1.6" />
+	<property name="log4j.jar" value="lib/log4j-1.2.16.jar" />
+
+	<target name="all" depends="clean,jar" />
+
+	<target name="compile">
+		<mkdir dir="${target.dir}/classes" />
+		<javac srcdir="src" destdir="${target.dir}/classes" source="${javac.source}">
+			<classpath location="${log4j.jar}" />
+		</javac>
+		<sync todir="${target.dir}/classes">
+			<preserveintarget>
+				<include name="**/*.class" />
+			</preserveintarget>
+			<fileset dir="src" defaultexcludes="yes">
+				<include name="**/*.xml" />
+				<include name="**/*.java" />
+			</fileset>
+		</sync>
+		<sync todir="${target.dir}/classes/data">
+			<fileset dir="data" defaultexcludes="yes">
+				<include name="**/*.xml" />
+			</fileset>
+		</sync>
+
+	</target>
+
+	<target name="jar" depends="compile">
+		<jar jarfile="aventura.jar" basedir="${target.dir}/classes" includes="**/*.class,**/*.xml,**/*.jpg,**/*.gif,**/*.java,**/*.png">
+		</jar>
+	</target>
+
+	<target name="clean">
+		<delete dir="${target.dir}" />
+	</target>
+</project>

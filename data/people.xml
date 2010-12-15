@@ -1,5 +1,5 @@
 <people>
-	<person name="Barak Obama">
+	<person name="Barak">
 		<portrait url="http://modiopera.com/images/icons/barak_obama.ico" />
 		<initialGreeting>Hello.</initialGreeting>
 		<greeting>What can I help you with today?</greeting>
