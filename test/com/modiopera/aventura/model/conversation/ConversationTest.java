@@ -9,7 +9,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.modiopera.aventura.controller.PlayerDataMap;
+import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.enums.PlayerTypeEnum;
 
 public class ConversationTest {

@@ -2,8 +2,8 @@ package com.modiopera.aventura.model.conversation;
 
 import java.util.List;
 
-import com.modiopera.aventura.controller.PlayerDataMap;
 import com.modiopera.aventura.model.GameObject;
+import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.Topic;
 
 public class Conversation extends GameObject {

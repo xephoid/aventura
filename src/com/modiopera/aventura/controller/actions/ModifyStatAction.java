@@ -1,6 +1,6 @@
 package com.modiopera.aventura.controller.actions;
 
-import com.modiopera.aventura.controller.PlayerDataMap;
+import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.enums.StatEnum;
 
 public class ModifyStatAction extends Action {
