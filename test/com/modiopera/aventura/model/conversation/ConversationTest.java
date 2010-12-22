@@ -9,6 +9,9 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.modiopera.aventura.controller.PlayerDataMap;
+import com.modiopera.aventura.model.enums.PlayerTypeEnum;
+
 public class ConversationTest {
 
 	private static final Dialog TEST_PLAYER_DIALOG = new Dialog();
@@ -64,7 +67,7 @@ public class ConversationTest {
 		Conversation conv = new Conversation();
 		conv.setRoot(TEST_ROOT);
 		conv.init();
-		List<Dialog> options = conv.getOptions();
+		List<Dialog> options = conv.getOptions(new PlayerDataMap(PlayerTypeEnum.CUSTOM));
 		Assert.assertEquals(TEST_PLAYER_DIALOG, options.get(1));
 		Assert.assertEquals(TEST_PLAYER_DIALOG2, options.get(0));
 	}

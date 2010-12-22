@@ -10,7 +10,6 @@ import com.modiopera.aventura.model.dungeon.Dungeon;
  *
  */
 public class Town extends GameObject {
-	private static final long serialVersionUID = 7189820019035028814L;
 	
 	private List<Person> townsPeople;
 	private Dungeon dungeon;

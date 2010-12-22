@@ -1,7 +1,5 @@
 package com.modiopera.aventura.model;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

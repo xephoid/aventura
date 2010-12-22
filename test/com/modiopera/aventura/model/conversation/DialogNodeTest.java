@@ -6,6 +6,9 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import com.modiopera.aventura.controller.PlayerDataMap;
+import com.modiopera.aventura.model.enums.PlayerTypeEnum;
+
 public class DialogNodeTest {
 
 	private static final Dialog TEST_DIALOG = new Dialog();
@@ -23,7 +26,7 @@ public class DialogNodeTest {
 		DialogNode node = new DialogNode();
 		//node.addOption(TEST_PLAYER_DIALOG, TEST_DIALOG);
 		
-		List<Dialog> options = node.getOptions();
+		List<Dialog> options = node.getOptions(new PlayerDataMap(PlayerTypeEnum.CUSTOM));
 		Assert.assertFalse(options.isEmpty());
 		Assert.assertEquals(TEST_PLAYER_DIALOG, options.get(0));
 	}

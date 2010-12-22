@@ -2,6 +2,7 @@ package com.modiopera.aventura.model.conversation;
 
 import java.util.List;
 
+import com.modiopera.aventura.controller.PlayerDataMap;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.Topic;
 
@@ -21,11 +22,11 @@ public class Conversation extends GameObject {
 		this.initialized = true;
 	}
 	
-	public List<Dialog> getOptions() throws ConversationException {
+	public List<Dialog> getOptions(PlayerDataMap player) throws ConversationException {
 		if (!this.initialized) {
 			throw new ConversationException("Conversation not initialized");
 		}
-		return this.current.getOptions();
+		return this.current.getOptions(player);
 	}
 	
 	public boolean chooseOption(Dialog dialog) throws ConversationException {

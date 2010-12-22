@@ -18,7 +18,6 @@ import org.xml.sax.SAXParseException;
 
 import com.modiopera.aventura.controller.EventEnum;
 import com.modiopera.aventura.controller.EventHandler;
-import com.modiopera.aventura.controller.actions.Action;
 import com.modiopera.aventura.controller.actions.ActivateTopicAction;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.Person;

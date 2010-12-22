@@ -45,16 +45,16 @@ Character stats
    Inteligence (INT) - How quickly you gain experience
    Camoflage (CAM) - How easy enemies spot you
    Charisma (CHA) - how much people are willing to share information, give you items and do things for you
-   (Sight) - inverse of camouflage
-   Hit Points (HPS) - How much damage you can take
+   (Perseption) - inverse of camouflage (if > 5 can see sight of enemies)
+   Fortitude (FRT) - How much damage you can take
 
 Character types (TODO)
    Revolutionary
    		-Chooses to solve conflict through conversation.  Weak strength, very good at talking
-		-Str: 1, Rng: 2, Int: 8, Cam: 0, Cha: 10, Hps: 9
+		-Str: 1, Rng: 2, Int: 8, Cam: 0, Cha: 10, Frt: 9
 		-Hiking stick
    Rogue
-      -Str: 5, Rng: 10, Int: 3, Cam: 5, Cha: 5, Hps: 3
+      -Str: 5, Rng: 10, Int: 3, Cam: 5, Cha: 5, Frt: 3
       -weak power, long ranged, above average sneaking ability
       -Pistol
    Monk
@@ -76,7 +76,7 @@ Character types (TODO)
 Experience:
 	Combat - enemies killed (STR, RNG, CAM) - critical bonus
 	Diplomacy - conversations "won" (CHA) - hidden conversation bits
-	Endurance - damage taken (HPS) - reduced damage change
+	Endurance - damage taken (FRT) - reduced damage change
 	Wisdom - experience gained (INT) - Experience bonus
 
 Word battles?

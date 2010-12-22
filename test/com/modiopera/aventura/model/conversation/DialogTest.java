@@ -1,7 +1,5 @@
 package com.modiopera.aventura.model.conversation;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -7,7 +7,6 @@ import com.modiopera.aventura.model.conversation.Conversation;
 import com.modiopera.aventura.model.conversation.Dialog;
 
 public class Person extends GameObject {
-	private static final long serialVersionUID = -9074309636174918540L;
 	
 	private boolean metBefore;
 	private Dialog initialGreeting;

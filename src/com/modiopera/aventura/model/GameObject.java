@@ -1,12 +1,9 @@
 package com.modiopera.aventura.model;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameObject implements Serializable {
-	
-	private static final long serialVersionUID = 834215476489578381L;
+public class GameObject {
 	
 	public static final int FIRST_ID = 0;
 	public static final Map<Class<? extends GameObject>, Integer> _objectMap = new HashMap<Class<? extends GameObject>, Integer>();

@@ -7,7 +7,6 @@ import com.modiopera.aventura.model.Person;
 import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Dialog;
 import com.modiopera.aventura.parser.xml.XMLGameParser;
-import com.modiopera.aventura.view.text.TextBasedView;
 
 public class Aventura {
 
@@ -25,8 +24,6 @@ public class Aventura {
 	 * TODO:
 	 */
 	public void start() {
-		TextBasedView view = new TextBasedView();
-		
 		XMLGameParser.parseAndRun("towns/test.xml");
 		
 	}
@@ -35,6 +32,7 @@ public class Aventura {
 		this.towns.add(town);
 	}
 	
+	@SuppressWarnings("unused")
 	private void old() {
 		Town town = new Town();
 		town.setName("Townville");
