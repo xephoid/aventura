@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." name="aventura" default="all">
 	<property name="target.dir" value="build" />
 	<property name="javac.source" value="1.6" />
