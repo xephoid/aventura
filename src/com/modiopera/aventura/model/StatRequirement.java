@@ -1,6 +1,5 @@
 package com.modiopera.aventura.model;
 
-import com.modiopera.aventura.controller.PlayerDataMap;
 import com.modiopera.aventura.model.enums.StatEnum;
 
 public class StatRequirement {

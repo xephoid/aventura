@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.modiopera.aventura.model.Person;
+import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.Quest;
 import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Conversation;

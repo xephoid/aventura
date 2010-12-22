@@ -1,9 +1,8 @@
-package com.modiopera.aventura.controller;
+package com.modiopera.aventura.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.modiopera.aventura.model.Item;
 import com.modiopera.aventura.model.enums.PlayerTypeEnum;
 import com.modiopera.aventura.model.enums.StatEnum;
 
