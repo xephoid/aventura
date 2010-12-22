@@ -43,4 +43,12 @@ public abstract class DungeonObject {
 	public boolean isObstruction() {
 		return false;
 	}
+	
+	public boolean isPlayer() {
+		return false;
+	}
+	
+	public boolean isMonster() {
+		return false;
+	}
 }

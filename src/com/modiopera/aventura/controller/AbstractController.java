@@ -18,6 +18,7 @@ import com.modiopera.aventura.view.IGameView;
 public abstract class AbstractController {
 
 	protected IGameView view;
+	protected PlayerDataMap playerData;
 
 	protected Town currentTown;
 	protected Person currentPerson;
@@ -112,4 +113,14 @@ public abstract class AbstractController {
 	public IGameView getView() {
 		return this.view;
 	}
+
+	public PlayerDataMap getPlayerData() {
+		return playerData;
+	}
+
+	public void setPlayerData(PlayerDataMap playerData) {
+		this.playerData = playerData;
+	}
+	
+	
 }

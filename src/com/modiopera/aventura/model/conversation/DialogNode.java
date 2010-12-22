@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.modiopera.aventura.controller.PlayerDataMap;
+
 public class DialogNode {
 	private Dialog dialog;
 	private Map<String, DialogVector> vectors = new HashMap<String, DialogVector>();
@@ -35,13 +37,15 @@ public class DialogNode {
 	    return vector;
 	}
 	
-	public List<Dialog> getOptions() {
+	public List<Dialog> getOptions(PlayerDataMap player) {
 		if (this.isEnd()) {
 			return null;
 		}
 		List<Dialog> result = new ArrayList<Dialog>();
 		for(DialogVector vector: this.vectors.values()) {
-			result.add(vector.getPlayerDialog());
+			if (vector.getRequirement() == null || vector.getRequirement().met(player)) {
+				result.add(vector.getPlayerDialog());
+			}
 		}
 		return result;
 	}
