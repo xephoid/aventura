@@ -1,86 +1,86 @@
 <people>
-	<person name="Barak">
-		<portrait url="http://modiopera.com/images/icons/barak_obama.ico" />
+	<person id ="jimmyt" name="Jimtastic" town="">
+		<portrait url="" />
 		<initialGreeting>Hello.</initialGreeting>
 		<greeting>What can I help you with today?</greeting>
-		<introduction>I am Barak Obama.  President of the United States.</introduction>
+		<introduction>I am Jimtastic.  I like shoes!</introduction>
 	</person>
-	<person name="Beyonce">
-		<portrait url="http://modiopera.com/images/icons/beyonce_knowles.ico" />
+	<person id="cvidaca" name="Charisse Vidaca" town="">
+		<portrait url="" />
 		<initialGreeting>Hi there.</initialGreeting>
 		<greeting>What's up?</greeting>
-		<introduction>I'm Beyonce! I sing and dance, plus I've done some acting.</introduction>
+		<introduction>I'm Charisse Vidaca! I have a brother named Donnie.</introduction>
 	</person>
-	<person name="Brad">
-		<portrait url="http://modiopera.com/images/icons/brad_pitt.ico" />
+	<person id="dvidica" name="Donnie Vidaca" town="">
+		<portrait url="" />
 		<initialGreeting>Sup.</initialGreeting>
 		<greeting>Yo.</greeting>
-		<introduction>I'm Brad Pitt.  Actor.</introduction>
+		<introduction>I'm Donnie.  You may have met my sister Charisse.</introduction>
 	</person>
-	<person name="David">
-		<portrait url="http://modiopera.com/images/icons/david_beckham.ico" />
+	<person id="glennl" name="Glen Leisenring">
+		<portrait url="" />
 		<initialGreeting>Hi.</initialGreeting>
 		<greeting>Hello.</greeting>
-		<introduction>I'm David Beckham.  I'm pretty good at Football.  Or as you Americans call it Soccer.</introduction>
+		<introduction>I am Glen.  Who is asking?</introduction>
 	</person>
-	<person name="Denzel">
-		<portrait url="http://modiopera.com/images/icons/denzel_washington.ico" />
+	<person id="mhellams" name="Moses Hellams">
+		<portrait url="" />
 		<initialGreeting>Hello there.</initialGreeting>
 		<greeting>How can I help you?</greeting>
-		<introduction>I am Denzel Washington.  I've been in a few movies.</introduction>
+		<introduction>I am Moses Hellams.  I've been around.</introduction>
 	</person>
-	<person name="Derek">
-		<portrait url="http://modiopera.com/images/icons/derek_jeter.ico" />
+	<person id="drek" name="Drek">
+		<portrait url="" />
 		<initialGreeting>Hey.</initialGreeting>
 		<greeting>Hey.</greeting>
-		<introduction>I'm Derek Jeter.  I play baseball.</introduction>
+		<introduction>I'm Drek Jeter.  I am whom you think I am.</introduction>
 	</person>
-	<person name="Sarah">
-		<portrait url="http://modiopera.com/images/icons/sara_palin.ico" />
+	<person id="palin" name="Sarah">
+		<portrait url="" />
 		<initialGreeting>Hiya!</initialGreeting>
 		<greeting>Hey there again!</greeting>
-		<introduction>I'm Sarah Palin.  Sure it great to meetcha!</introduction>
+		<introduction>I'm Sarah.  Sure is great to meetcha!</introduction>
 	</person>
-	<person name="Katherine">
-		<portrait url="http://modiopera.com/images/icons/katherine_heigl.ico" />
+	<person id="kathy" name="Katherine">
+		<portrait url="" />
 		<initialGreeting>Welcome.</initialGreeting>
 		<greeting>Good to see you again.</greeting>
-		<introduction>My name is Katherine Heigl.  I'm a semi-famous actress.</introduction>
+		<introduction>My name is Katherine.  I'm kind of a big deal.</introduction>
 	</person>
-	<person name="Jennifer">
-		<portrait url="http://modiopera.com/images/icons/jennifer_love_hewitt.ico" />
+	<person id="jenn" name="Jennifer">
+		<portrait url="" />
 		<initialGreeting>Greetings to you.</initialGreeting>
 		<greeting>Greetings.</greeting>
-		<introduction>I am Jennifer Love Hewitt.  I used to be a famous actress.  I've also done some singing.</introduction>
+		<introduction>I am Jennifer.  I like to think of myself as a coffee officionato.</introduction>
 	</person>
-	<person name="Paris">
-		<portrait url="http://modiopera.com/images/icons/paris_hilton.ico" />
+	<person id="vhyatt" name="Venice">
+		<portrait url="" />
 		<initialGreeting>Heeeeey!</initialGreeting>
 		<greeting>Do I know you?</greeting>
-		<introduction>I'm Paris Hilton and you better not forget it.</introduction>
+		<introduction>I'm Venice Hyatt and you better not forget it!</introduction>
 	</person>
-	<person name="Lebron">
-		<portrait url="http://modiopera.com/images/icons/lebron_james.ico" />
+	<person id="aherb" name="Abdul Herbster">
+		<portrait url="" />
 		<initialGreeting>Hey.</initialGreeting>
 		<greeting>Word.</greeting>
-		<introduction>Lebron James.  Professional basketball player EXTRODINARE.</introduction>
+		<introduction>Abdul.  Explorer EXTRODINARE.</introduction>
 	</person>
-	<person name="Kanye">
-		<portrait url="http://modiopera.com/images/icons/kanye_west.ico" />
-		<initialGreeting>Ja.</initialGreeting>
+	<person id="kanye" name="Kanye">
+		<portrait url="" />
+		<initialGreeting>Ya.</initialGreeting>
 		<greeting>I am being spoken to.</greeting>
 		<introduction>Call me Kanye of the West.</introduction>
 	</person>
-	<person name="Shaq">
-		<portrait url="http://modiopera.com/images/icons/shaquille_oneal.ico" />
+	<person id="mdav" name="Myles Davydov">
+		<portrait url="" />
 		<initialGreeting>Dude</initialGreeting>
 		<greeting>Duuuudde</greeting>
 		<introduction>You don't know who I am? Really?</introduction>
 	</person>
-	<person name="Seth">
-		<portrait url="http://modiopera.com/images/icons/seth_rogen.ico" />
+	<person id="seth" name="Seth">
+		<portrait url="" />
 		<initialGreeting>Greetings to you.</initialGreeting>
 		<greeting>Hello human.</greeting>
-		<introduction>I'm Seth Rogen.  I was in a show no one remembers called Freaks and Geeks.</introduction>
+		<introduction>I'm Seth.  I am totally a human.  I love doing human things like consuming plant and animal matter.</introduction>
 	</person>
 </people>

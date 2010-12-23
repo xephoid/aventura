@@ -19,4 +19,8 @@
 	</item>
 	<item name="Incriminating Photo" plural="Incriminating Photos">
 	</item>
+    <item name="Incriminating Photo" plural="Incriminating Photos">
+    </item>
+    <item id="frenchPress" name="French Press" plural="French Presses">
+    </item>
 </items>
