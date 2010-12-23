@@ -90,11 +90,11 @@ public abstract class AbstractController {
 		this.conversationMap.put(quest.getExplination().getId(),
 				quest.getExplination());
 		group.next().addQuest(quest);
-
+/*
 		this.conversationMap.put(quest.getSolution().getId(),
 				quest.getSolution());
 		group.next().addConversation(quest.getSolution());
-
+*/
 		if (quest.getInformation() != null) {
 			for (Conversation c : quest.getInformation()) {
 				if (group.hasNext()) {

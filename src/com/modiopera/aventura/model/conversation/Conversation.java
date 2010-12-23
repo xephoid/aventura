@@ -3,6 +3,7 @@ package com.modiopera.aventura.model.conversation;
 import java.util.List;
 
 import com.modiopera.aventura.model.GameObject;
+import com.modiopera.aventura.model.Person;
 import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.Topic;
 
@@ -13,6 +14,7 @@ public class Conversation extends GameObject {
 	private DialogNode current;
 	private Dialog exit;
 	private Topic topic;
+	private Person person;
 	
 	public void init() throws ConversationException {
 		if (this.root == null) {
@@ -75,4 +77,12 @@ public class Conversation extends GameObject {
 	public Topic getTopic() {
 		return this.topic;
 	}
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
 }

@@ -1,5 +1,6 @@
 package com.modiopera.aventura.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.modiopera.aventura.model.conversation.Conversation;
@@ -8,20 +9,21 @@ import com.modiopera.aventura.model.conversation.Dialog;
 public class Quest extends GameObject {
 	
 	private boolean completed = false;
+	private Person requestor;
+	private List<Person> participants = new ArrayList<Person>();
 	private Conversation explination;
-	private List<Conversation> information;
-	private Conversation solution;
+	private List<Conversation> information = new ArrayList<Conversation>();
+	private List<Conversation> solveds = new ArrayList<Conversation>();
 	private Dialog intro;
 	
 	public boolean isCompleted() {
 		return completed;
 	}
-	public void setCompleted(boolean completed) {
-		this.completed = completed;
-	}
+	
 	public Conversation getExplination() {
 		return explination;
 	}
+	
 	public void setExplination(Conversation explination) {
 		this.explination = explination;
 	}
@@ -37,14 +39,43 @@ public class Quest extends GameObject {
     public List<Conversation> getInformation() {
         return information;
     }
+    
     public void setInformation(List<Conversation> information) {
         this.information = information;
     }
     
-    public Conversation getSolution() {
-        return solution;
+    public List<Conversation> getSolveds() {
+        return this.solveds;
     }
-    public void setSolution(Conversation solution) {
-        this.solution = solution;
+    
+    public void setSolution(List<Conversation> solveds) {
+        this.solveds = solveds;
+    }
+    
+    public void completeQuest() {
+        this.completed = true;
+        for (Conversation conv : this.solveds) {
+            if (conv.getPerson() == null) {
+                this.requestor.addConversation(conv);
+            } else {
+                conv.getPerson().addConversation(conv);
+            }
+        }
+    }
+
+    public void setRequestor(Person requestor) {
+        this.requestor = requestor;
+    }
+
+    public Person getRequestor() {
+        return requestor;
+    }
+ 
+    public List<Person> getParticipants() {
+        return this.participants;
+    }
+    
+    public void addParticipant(Person participant) {
+        this.participants.add(participant);
     }
 }

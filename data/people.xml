@@ -1,22 +1,4 @@
 <people>
-	<person id ="jimmyt" name="Jimtastic" town="">
-		<portrait url="" />
-		<initialGreeting>Hello.</initialGreeting>
-		<greeting>What can I help you with today?</greeting>
-		<introduction>I am Jimtastic.  I like shoes!</introduction>
-	</person>
-	<person id="cvidaca" name="Charisse Vidaca" town="">
-		<portrait url="" />
-		<initialGreeting>Hi there.</initialGreeting>
-		<greeting>What's up?</greeting>
-		<introduction>I'm Charisse Vidaca! I have a brother named Donnie.</introduction>
-	</person>
-	<person id="dvidica" name="Donnie Vidaca" town="">
-		<portrait url="" />
-		<initialGreeting>Sup.</initialGreeting>
-		<greeting>Yo.</greeting>
-		<introduction>I'm Donnie.  You may have met my sister Charisse.</introduction>
-	</person>
 	<person id="glennl" name="Glen Leisenring">
 		<portrait url="" />
 		<initialGreeting>Hi.</initialGreeting>
@@ -47,35 +29,11 @@
 		<greeting>Good to see you again.</greeting>
 		<introduction>My name is Katherine.  I'm kind of a big deal.</introduction>
 	</person>
-	<person id="jenn" name="Jennifer">
-		<portrait url="" />
-		<initialGreeting>Greetings to you.</initialGreeting>
-		<greeting>Greetings.</greeting>
-		<introduction>I am Jennifer.  I like to think of myself as a coffee officionato.</introduction>
-	</person>
-	<person id="vhyatt" name="Venice">
-		<portrait url="" />
-		<initialGreeting>Heeeeey!</initialGreeting>
-		<greeting>Do I know you?</greeting>
-		<introduction>I'm Venice Hyatt and you better not forget it!</introduction>
-	</person>
 	<person id="aherb" name="Abdul Herbster">
 		<portrait url="" />
 		<initialGreeting>Hey.</initialGreeting>
 		<greeting>Word.</greeting>
 		<introduction>Abdul.  Explorer EXTRODINARE.</introduction>
-	</person>
-	<person id="kanye" name="Kanye">
-		<portrait url="" />
-		<initialGreeting>Ya.</initialGreeting>
-		<greeting>I am being spoken to.</greeting>
-		<introduction>Call me Kanye of the West.</introduction>
-	</person>
-	<person id="mdav" name="Myles Davydov">
-		<portrait url="" />
-		<initialGreeting>Dude</initialGreeting>
-		<greeting>Duuuudde</greeting>
-		<introduction>You don't know who I am? Really?</introduction>
 	</person>
 	<person id="seth" name="Seth">
 		<portrait url="" />

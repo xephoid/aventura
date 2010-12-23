@@ -1,0 +1,264 @@
+<town id="townville" name="TownVille">
+    <description>Townville is a town. It hsa town stuff.</description>
+    <people open="true">
+        <person id="jenn" name="Jennifer">
+            <portrait url="" />
+            <initialGreeting>Greetings to you.</initialGreeting>
+            <greeting>Greetings.</greeting>
+            <introduction>I am Jennifer. I like to think of myself as a
+                coffee officionato.</introduction>
+            <quest id="fpress" item="frenchPress">
+                <explination>
+                    <conversation person="jenn">
+                        <dialog>I really need a new french press.
+                        </dialog>
+                        <node>
+                            <action topic="frenchPress" />
+                            <player>Why?</player>
+                            <dialog>I'm not sure... It's in a place.
+                            </dialog>
+                            <node id="why">
+                                <player>Why don't you just go get one?
+                                </player>
+                                <dialog>I probably will once I'm
+                                    finished working. Why did you ask
+                                    how you could help me if you're just
+                                    going to patronize me?</dialog>
+                            </node>
+                            <node>
+                                <player>What do you need it for?
+                                </player>
+                                <dialog>To make coffee silly! What
+                                    elsedo you do with a french press?
+                                </dialog>
+                            </node>
+                            <node>
+                                <player>Where would I find a french
+                                    press?</player>
+                                <dialog>The junk yard has a lot of
+                                    random discarded stuff. I was going
+                                    to start looking there later.
+                                </dialog>
+                                <node>
+                                    <player>Um... How do I go there?
+                                    </player>
+                                    <dialog>*Sigh* Click on the link to
+                                        the left that says "Enter Maze"
+                                    </dialog>
+                                </node>
+                            </node>
+                            <node cha="5">
+                                <player>What are you doing right now?
+                                </player>
+                                <dialog>I'm packing coffee beans. It is
+                                    quite exhausting.</dialog>
+                                <node>
+                                    <player>Why are you packing coffee
+                                        beans?</player>
+                                    <dialog>It’s for my business. I sell
+                                        coffee beans you see, but I run
+                                        it all by myself.</dialog>
+                                    <node>
+                                        <player>Why not get someone else
+                                            to package the beans?
+                                        </player>
+                                        <dialog>My business is just
+                                            starting out. I don’t have
+                                            the money to hire another
+                                            person.</dialog>
+                                    </node>
+                                    <node cha="7">
+                                        <action quest="fpress"></action>
+                                        <player>I’ll do it for you while
+                                            you go get a french press,
+                                            for free!</player>
+                                        <dialog>Wow that would be great!
+                                            I’ll be right back.</dialog>
+                                    </node>
+                                    <node>
+                                        <player>That's too bad.</player>
+                                        <dialog>Yes, I know.</dialog>
+                                    </node>
+                                </node>
+                                <node>
+                                    <player>That is a weird thing to do.
+                                    </player>
+                                    <dialog>It’s not so weird if you run
+                                        your own store selling coffee
+                                        beans. Do you have something
+                                        better to do?</dialog>
+                                    <node>
+                                        <player>Your mom.</player>
+                                        <dialog>How mature… Well if
+                                            you’re finished I’m going to
+                                            get back to my work. It
+                                            wouldn’t bother me if I
+                                            never spoke to you again.
+                                        </dialog>
+                                    </node>
+                                    <node>
+                                        <player>Sorry, I didn’t mean to
+                                            be rude.</player>
+                                        <dialog>It’s quite alright. But,
+                                            if you will excuse me I need
+                                            to get back to my work.
+                                        </dialog>
+                                    </node>
+                                </node>
+                            </node>
+                        </node>
+                        <exit>I have to go.</exit>
+                    </conversation>
+                </explination>
+                <solved>
+                    <conversation>
+                        <dialog>What is it?</dialog>
+                        <node>
+                            <player>How do you like your new french
+                                press?</player>
+                            <dialog>It is wonderful thank you so much!
+                            </dialog>
+                        </node>
+                        <exit>Great! See you later!</exit>
+                    </conversation>
+                    <conversation person="jimmyt">
+                        <dialog>Yos</dialog>
+                        <node>
+                            <player>Did you hear about the french press?</player>
+                            <dialog>No.  What's that?</dialog>
+                            <node>
+                                <player>I totally got one for Jennifer.</player>
+                                <dialog>Um, thats cool... I guess.</dialog>
+                            </node>
+                        </node>
+                        <exit>Piece out!</exit>
+                    </conversation>
+                </solved>
+            </quest>
+        </person>
+        <person id="vhyatt" name="Venice">
+            <portrait url="" />
+            <initialGreeting>Heeeeey!</initialGreeting>
+            <greeting>Do I know you?</greeting>
+            <introduction>I'm Venice Hyatt and you better not forget it!
+            </introduction>
+            <conversation topic="frenchPress">
+                <dialog>What's that?</dialog>
+                <node>
+                    <player>Do you perchance have a french press
+                        you don't want?</player>
+                    <dialog>Um. I don’t think so. Do I know you?
+                    </dialog>
+                    <node>
+                        <player>Probably not. Excuse me I'm
+                            {player}.</player>
+                        <dialog>Well, it's nice to meet you
+                            {player}. Let me think. Hmmmmm. I
+                            might have something like that, but
+                            I would have no idea where it is.
+                                </dialog>
+                    </node>
+                    <node>
+                        <player>If you don't know who I am you
+                            probably aren't worth talking to.
+                                </player>
+                        <dialog>You are mean!</dialog>
+                        <node>
+                            <player>I’m not mean, I just mean
+                                what I say.</player>
+                            <dialog>Har har. I’m laughing so
+                                hard right now. I can’t control
+                                myself. I might pass out… From
+                                an overdose of sarcasm!</dialog>
+                            <node>
+                                <player>Not!</player>
+                                <dialog>Hold on a second… The
+                                    80s called, they want their
+                                    jokes back.</dialog>
+                                <node>
+                                    <player>Oh snap!</player>
+                                    <dialog>Ok, now this is so
+                                        bad it's funny again.
+                                        That was Grrrrreat!
+                                            </dialog>
+                                </node>
+                            </node>
+                        </node>
+                        <node>
+                            <player>Sorry, not sure what came
+                                over me there.</player>
+                            <dialog>I forgive you, but maybe you
+                                want to check yourself.</dialog>
+                            <node>
+                                <player>Yeah, I almost wrecked
+                                    myself</player>
+                                <dialog>For shizzy my nizzy.
+                                        </dialog>
+                            </node>
+                            <node>
+                                <player>You're wack!</player>
+                                <dialog>You forgot the wiggiddy
+                                    wiggiddy...</dialog>
+                            </node>
+                        </node>
+                    </node>
+                </node>
+                <exit>See ya!</exit>
+            </conversation>
+        </person>
+        <person id="kanye" name="Kanye">
+            <portrait url="" />
+            <initialGreeting>Ya.</initialGreeting>
+            <greeting>I am being spoken to.</greeting>
+            <introduction>Call me Kanye of the West.</introduction>
+            <conversation person="kanye" topic="need">
+                <dialog>What do you need to know?</dialog>
+                <node>
+                    <player>Do you know where I can find a
+                        french press?</player>
+                    <dialog>What would you ever do with that?
+                            </dialog>
+                    <node>
+                        <player>I don't know... Make coffee?
+                                </player>
+                        <dialog>Yeah, well, I've never seen one.
+                        </dialog>
+                        <node>
+                            <player>Ok, thanks for nothing.
+                                    </player>
+                            <dialog>Screw you.</dialog>
+                        </node>
+                        <node>
+                            <player>Well, talk to you later
+                                then.</player>
+                            <dialog>Bye.</dialog>
+                        </node>
+                    </node>
+                    <node>
+                        <player>Someone I know needs one.
+                                </player>
+                        <dialog>Try the junkyard.</dialog>
+                    </node>
+                    <node>
+                        <player>Why are you so rude?</player>
+                        <dialog>Why are you talking to me?
+                                </dialog>
+                    </node>
+                </node>
+                <exit>I've got nothing left to say to you.
+                        </exit>
+            </conversation>
+        </person>
+        <person id ="jimmyt" name="Jimtastic">
+            <portrait url="" />
+            <initialGreeting>Hello.</initialGreeting>
+            <greeting>What can I help you with today?</greeting>
+            <introduction>I am Jimtastic.  I like shoes!</introduction>
+        </person>
+    </people>
+    <items open="true">
+        <item id="frenchPress" name="French Press" plural="French Presses"></item>
+    </items>
+    <critters open="true">
+    </critters>
+</town>

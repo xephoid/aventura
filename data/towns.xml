@@ -1,8 +1,5 @@
 <towns>
-	<town id="townville" name="TownVille">
-		<description>Townville is a town.  It hsa town stuff.</description>
-	</town>
-	<town id="placetown" name="Placetown">
-		<description>Placetown has lots of places</description>
-	</town>
+	<town name="Margadon" >
+        <description>This is a random town.  Everything in it is randomly added from the pool of stuff.</description>
+    </town>
 </towns>

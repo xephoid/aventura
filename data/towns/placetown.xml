@@ -1,0 +1,126 @@
+<town id="placetown" name="Placetown" open="true">
+    <description>Placetown has lots of places</description>
+    <people open="true">
+        <person id="mdav" name="Myles Davydov">
+            <portrait url="" />
+            <initialGreeting>Good day to you sir!</initialGreeting>
+            <greeting>To what honor do I owe your presence?</greeting>
+            <introduction>I am but a humble beggar.  Pay me no mind.</introduction>
+            <quest id="britches">
+        <explination>
+            <conversation>
+                <dialog>I have a quest most dire my friend.  But beware! This quest is not for the faint of heart, the weak of mind or the faint of spirit.  Do you accept this challenge set before you?</dialog>
+                <node id="ask">
+                    <player>Excuse me?</player>
+                    <dialog>Do you accept this challenge set before you?</dialog>
+                    <node>
+                        <player>Yes. I accept</player>
+                        <dialog>GLORIOUS! Now to business.</dialog>
+                        <node id="accepted">
+                            <player>Ok, What now?</player>
+                            <dialog>Huh? Oh YESSS! Most dire business you see.  Most dire.</dialog>
+                            <node>
+                                <player>Right, so what do you want me to do.</player>
+                                <dialog>Hush my friend.  Don’t speak to loudly.  What we discuss be dire business.</dialog>
+                                <node>
+                                    <player>Yes.  You mentioned that.</player>
+                                    <dialog>I can’t emphasize the sheer gravity of this situation! Ohhh, most dire my child, most dire.</dialog>
+                                    <node ref="accepted" />
+                                </node>
+                                <node id="query">
+                                    <player>Is there anything you want me to actually do?</player>
+                                    <dialog>Alright, I supposed ‘tis time we get down to brass and tax.  A long time ago, a simpler time if ever there was one, I owned myself the finest pair of britches a man did have in those days, in those times.  However, time has not smiled upon those britches in many a moon.  One could say the sun hath not seen the surface of these britches in their entirety since it did last round the Earth.  As a man of lesser stand, my access to certain amenities has fallen short.  As such these britches, the very ones I wear upon these weary old legs, have not the faintest touch of water, brush or soap in measures larger than might fit in a thimble.  Though it pains me to do so I must beg, if not plead with you to attend to what is so sorely due.</dialog>
+                                    <node>
+                                        <player>Wait… so you need me to wash your pants?</player>
+                                        <dialog>In so many crude words, aye, that be my query.</dialog>
+                                        <node ref="query" />
+                                    </node>
+                                    <node>
+                                        <player>So that's what that smell was.</player>
+                                        <dialog>Aye, a foul stench it be not even to comfort a beast, ne’er a man.</dialog>
+                                        <node ref="query" />
+                                    </node>
+                                    <node>
+                                        <player>Gross!</player>
+                                        <dialog>As I spoke before.  Quite dire my friend.</dialog>
+                                        <node ref="query" />
+                                    </node>
+                                    <node>
+                                        <player>Um... ok.</player>
+                                        <dialog>I thank you kind one.  I do verily thank thee.</dialog>
+                                        <action quest="britches" />
+                                    </node>
+                                    <node id="special" cha="5">
+                                        <player>Why don't you do it?</player>
+                                        <dialog>Alas! What if I could? Think not of you would I?</dialog>
+                                        <node>
+                                            <player>Did that even make sense?</player>
+                                            <dialog>Forsooth!</dialog>
+                                            <node ref="special" />
+                                        </node>
+                                        <node>
+                                            <player>Why can't you?</player>
+                                            <dialog>With will there must also be means! I have much of the former and none of the later.</dialog>
+                                            <node>
+                                                <player>So if I gave you a bucket, soap and a brush you would do it yourself?</player>
+                                                <dialog>...aye...</dialog>
+                                                <action quest="britches" />
+                                            </node>
+                                        </node>
+                                    </node>
+                                </node>
+                                <node>
+                                    <player>Is this a joke?</player>
+                                    <dialog>Good lord child no! This isn’t in the least a laughing matter.</dialog>
+                                    <node ref="accepted" />
+                                </node>
+                            </node>
+                        </node>
+                        <node>
+                            <player>Um... Yes?</player>
+                            <dialog>STUPENDUS!  I like you with each passing second.  A remarkable being are you.  I feel my ease nestling in deeper in my very soul with each moment I converse with you.</dialog>
+                            <node ref="accepted" />
+                        </node>
+                    </node>
+                    <node>
+                        <player>Uh, sure.  Why not?</player>
+                        <dialog>Magnificent!</dialog>
+                        <node ref="accepted"/>
+                    </node>
+                    <node>
+                        <player>Um, what exactly am I accepting?</player>
+                        <dialog>Is that doubt I hear? Oh no, can’t have any of that.  Only the surest of the sure.  Let’s try again.</dialog>
+                        <node ref="ask" />
+                    </node>
+                </node>
+                <exit>I should probably go.</exit>
+            </conversation>
+        </explination>
+        <solved>
+            <conversation>
+                <dialog></dialog>
+                <node>
+                    <person>How are those clean britches?</person>
+                    <dialog>Words... cannot describe.</dialog>
+                </node>
+                <exit>Have a great day!</exit>
+            </conversation>
+        </solved>
+    </quest>
+            <person id="cvidaca" name="Charisse Vidaca">
+                <portrait url="" />
+                <initialGreeting>Hi there.</initialGreeting>
+                <greeting>What's up?</greeting>
+                <introduction>I'm Charisse Vidaca! I have a brother named Donnie.</introduction>
+            </person>
+            <person id="dvidica" name="Donnie Vidaca">
+                <portrait url="" />
+                <initialGreeting>Sup.</initialGreeting>
+                <greeting>Yo.</greeting>
+                <introduction>I'm Donnie.  You may have met my sister Charisse.</introduction>
+            </person>
+        </person>
+    </people>
+    <items open="true"></items>
+    <critters open="true"></critters>
+</town>

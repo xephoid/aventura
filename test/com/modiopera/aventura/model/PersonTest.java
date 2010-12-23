@@ -77,7 +77,7 @@ public class PersonTest {
 		quests.add(quest);
 		person.setQuests(quests);
 		Assert.assertEquals(quest, person.getAvailableQuest());
-		quest.setCompleted(true);
+		quest.completeQuest();
 		Assert.assertNull(person.getAvailableQuest());
 	}
 

@@ -15,12 +15,8 @@
 	</item>
 	<item name="Hair Tie" plural="Hari Ties">
 	</item>
-	<item name="Sword of Great Importance" plural="Spoons of the Greatest Importance">
+	<item name="Sword of Great Importance" plural="Swords of the Greatest Importance">
 	</item>
 	<item name="Incriminating Photo" plural="Incriminating Photos">
 	</item>
-    <item name="Incriminating Photo" plural="Incriminating Photos">
-    </item>
-    <item id="frenchPress" name="French Press" plural="French Presses">
-    </item>
 </items>

@@ -40,7 +40,7 @@ public class XMLGameDataParser {
     }
 
 	public static void loadData() {
-		parseTownData(getDocument("data/towns.xml"));
+		//parseTownData(getDocument("data/towns.xml"));
 		parsePersonData(getDocument("data/people.xml"));
 		parseQuestData(getDocument("data/quests.xml"));
 	}
@@ -66,9 +66,9 @@ public class XMLGameDataParser {
         return xml;
 	}
 	
-	private static void parseTownData(Document xml) {
-		if (xml != null) {
-			NodeList towns = xml.getElementsByTagName(XMLParserConstants.PARSER_TAG_TOWN);
+	private static List<Town> parseTownData(NodeList towns) {
+	    List<Town> townList = new ArrayList<Town>();
+		if (towns != null) {
 			for (int i = 0; i < towns.getLength(); i++) {
 				Node node = towns.item(i);
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -77,10 +77,17 @@ public class XMLGameDataParser {
 					town.setName(townElem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_NAME));
 					
 					town.setDescrption(extractTextFromNode(XMLParserConstants.PARSER_ATTRIBUTE_DESCRIPTION, node));
+					
+					// TODO: parse people
+					// TODO: parse items
+					// TODO: parse critters
+					
 					FactoryFactory.getInstance().getTownFactory().add(town);
+					townList.add(town);
 				}
 			}
 		}
+		return townList;
 	}
 	
 	private static void parsePersonData(Document xml) {
@@ -147,7 +154,7 @@ public class XMLGameDataParser {
 			quest.setInformation(infos);
 			
 			Element solElem = (Element) extractFirstNode(XMLParserConstants.PARSER_TAG_SOLUTION, node);
-			quest.setSolution(parseConversation((Element) extractFirstNode(XMLParserConstants.PARSER_TAG_CONVERSATION, solElem)));
+			quest.getSolveds().add(parseConversation((Element) extractFirstNode(XMLParserConstants.PARSER_TAG_CONVERSATION, solElem)));
 			
 			FactoryFactory.getInstance().getQuestFactory().add(quest);
 		}
