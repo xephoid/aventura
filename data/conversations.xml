@@ -1,0 +1,90 @@
+<conversations>
+    <conversation>
+        <dialog>Tell me your problems.</dialog>
+        <exit>I need to go.</exit>
+        <node>
+            <player>Hey, you know what sucks?</player>
+            <dialog>A vaccuum cleaner?</dialog>
+            <node>
+                <player>No. I mean you know what sucks in a metaphorical sense?</player>
+                <dialog>Black holes?</dialog>
+                <node>
+                    <player>No. I mean, you know what isn't cool?</player>
+                    <dialog>Lava?</dialog>
+                </node>
+            </node>
+        </node>
+    </conversation>
+    <conversation>
+        <dialog>Fun times ahead!</dialog>
+        <exit>Exhuberence!</exit>
+        <node>
+            <player>Let us engage in silly conversation!</player>
+            <dialog>Yes let's! What should we talk about?</dialog>
+            <node>
+                <player>Marmalade!</player>
+                <dialog>Dundee or regular?</dialog>
+                <node>
+                    <player>Regular of course!</player>
+                    <dialog>Marvelous!</dialog>
+                </node>
+                <node>
+                    <player>Dundee is quite superiour.</player>
+                    <dialog>No disagreement!</dialog>
+                </node>
+                <node>
+                    <player>Periwinkle!</player>
+                    <dialog>Fluffernutter!</dialog>
+                </node>
+            </node>
+            <node>
+                <player>Plankton!</player>
+                <dialog>Delicious!</dialog>
+                <node>
+                    <player>Dare you ingest?</player>
+                    <dialog>Only as a light drizzle.</dialog>
+                </node>
+                <node>
+                    <player>Turgid accusation!</player>
+                    <dialog>Besmerched retort!</dialog>
+                </node>
+            </node>
+            <node>
+                <player>Badgers.</player>
+                <dialog>I preffer HORTICULTURE!</dialog>
+                <node>
+                    <player>I have no foibles with that.</player>
+                    <dialog>Indubitably!</dialog>
+                </node>
+                <node>
+                    <player>I take greet offense to you derogitory statments!</player>
+                    <dialog>Malnutrition!</dialog>
+                </node>
+            </node>
+        </node>
+    </conversation>
+    <conversation>
+        <dialog>Whats up?</dialog>
+        <node>
+            <player>What is the best pun you have ever heard?</player>
+            <dialog>I once entered ten puns into a pun contest hoping to win, but no pun in ten did!</dialog>
+        </node>
+        <exit>Ok... I should go.</exit>
+    </conversation>
+    <conversation>
+        <dialog>You look like you've got a question.</dialog>
+        <node>
+            <player>Tell me a joke.</player>
+            <dialog>Ok... Um... Yeah, I got nothin'.</dialog>
+        </node>
+        <exit>I'm leaving.</exit>
+    </conversation>
+    <conversation>
+        <dialog>R.I.P. Leslie Nielsen</dialog>
+        <node>
+            <player>Surely you can't be serious?</player>
+            <dialog>I am serious, and don't call me Shirley.</dialog>
+        </node>
+        <exit>Farewell.</exit>
+    </conversation>
+</conversations>

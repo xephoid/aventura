@@ -1,11 +1,8 @@
 <towns>
-	<town name="TownVille">
+	<town id="townville" name="TownVille">
 		<description>Townville is a town.  It hsa town stuff.</description>
 	</town>
-	<town name="Placetown">
+	<town id="placetown" name="Placetown">
 		<description>Placetown has lots of places</description>
-	</town>
-	<town name="Philly">
-		<description>Good cheesesteaks here!</description>
 	</town>
 </towns>
