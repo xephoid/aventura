@@ -18,10 +18,6 @@ public class CompleteQuestAction extends Action {
     public void setQuest(Quest quest) {
         this.quest = quest;
     }
-
-    public Quest getQuest() {
-        return quest;
-    }
     
     @Override
     public String toString() {

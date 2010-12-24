@@ -87,4 +87,17 @@
         </node>
         <exit>Farewell.</exit>
     </conversation>
+    <conversation>
+        <dialog>I have a french press.</dialog>
+        <node>
+            <player>Do you have a french press?</player>
+            <dialog>Why, I do actually.</dialog>
+            <node>
+                <player>Great! Can I have it?</player>
+                <dialog>Sure.</dialog>
+                <action item="frenchpress" />
+            </node>
+        </node>
+        <exit>See you later.</exit>
+    </conversation>
 </conversations>

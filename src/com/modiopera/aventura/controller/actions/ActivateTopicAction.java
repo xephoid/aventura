@@ -15,10 +15,6 @@ public class ActivateTopicAction extends Action {
 		this.topic = topic;
 	}
 	
-	public Topic getTopic() {
-		return this.topic;
-	}
-	
 	@Override
 	public String toString() {
 	    return "Topic" +topic+ " activated!";

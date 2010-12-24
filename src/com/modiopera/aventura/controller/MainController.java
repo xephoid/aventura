@@ -9,7 +9,7 @@ public class MainController extends AbstractController {
 		MainController main = new MainController();
 		
 		main.setView(new TextBasedView());
-		main.setPlayerData(new PlayerDataMap(PlayerTypeEnum.REVOLUTIONARY));
 		main.start();
+		main.setPlayerData(new PlayerDataMap(PlayerTypeEnum.REVOLUTIONARY));
 	}
 }

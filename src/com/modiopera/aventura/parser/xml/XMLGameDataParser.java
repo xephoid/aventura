@@ -21,6 +21,7 @@ import com.modiopera.aventura.controller.EventEnum;
 import com.modiopera.aventura.controller.EventHandler;
 import com.modiopera.aventura.controller.actions.ActivateTopicAction;
 import com.modiopera.aventura.controller.actions.CompleteQuestAction;
+import com.modiopera.aventura.controller.actions.GiveItemToPlayerAction;
 import com.modiopera.aventura.model.Critter;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.Item;
@@ -85,6 +86,13 @@ public class XMLGameDataParser {
 	    // Random quests
 	    Document questDoc = getDocument(new File("data/quests.xml"));
 	    parseQuestData(null, questDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_QUEST));
+	    
+	    // Random conversations
+	    Document convDoc = getDocument(new File("data/conversations.xml"));
+	    NodeList convNodes = convDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_CONVERSATION);
+	    for (int i = 0; i < convNodes.getLength(); i++) {
+	        FactoryFactory.getInstance().getConversationFactory().add(parseConversation((Element) convNodes.item(i)));
+	    }
 	}
 	
 	public static Document getDocument(File file) {
@@ -437,6 +445,11 @@ public class XMLGameDataParser {
 			    Quest quest = getQuest(elem.getAttribute("quest"));
 			    CompleteQuestAction action = new CompleteQuestAction();
 			    action.setQuest(quest);
+			    EventHandler.getInstance().mapEventToAction(eventType, actionObject, action);
+			} else if (elem.hasAttribute("item")) {
+			    Item item = getItem(elem.getAttribute("item"));
+			    GiveItemToPlayerAction action = new GiveItemToPlayerAction();
+			    action.setItem(item);
 			    EventHandler.getInstance().mapEventToAction(eventType, actionObject, action);
 			}
 		}

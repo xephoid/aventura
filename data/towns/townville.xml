@@ -1,5 +1,5 @@
 <town id="townville" name="TownVille">
-    <description>Townville is a town. It hsa town stuff.</description>
+    <description>Townville is a town. It has town stuff.</description>
     <people open="true">
         <person id="jenn" name="Jennifer">
             <portrait url="" />

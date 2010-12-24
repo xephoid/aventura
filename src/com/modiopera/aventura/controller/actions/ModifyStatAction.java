@@ -1,13 +1,11 @@
 package com.modiopera.aventura.controller.actions;
 
-import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.enums.StatEnum;
 
 public class ModifyStatAction extends Action {
 
 	private StatEnum stat;
 	private Integer value;
-	private PlayerDataMap playerData;
 	
 	@Override
 	public boolean act() {
@@ -17,7 +15,7 @@ public class ModifyStatAction extends Action {
 		if (this.value == null) {
 			return false;
 		}
-		this.playerData.setValue(stat, this.value);
+		this.playerDataMap.setValue(stat, this.value);
 		return true;
 	}
 	
@@ -27,13 +25,5 @@ public class ModifyStatAction extends Action {
 
 	public void setAmount(Integer amount) {
 		this.value = amount;
-	}
-
-	public void setPlayerData(PlayerDataMap playerData) {
-		this.playerData = playerData;
-	}
-
-	public PlayerDataMap getPlayerData() {
-		return playerData;
 	}
 }

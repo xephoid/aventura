@@ -68,24 +68,34 @@ public abstract class AbstractController {
 		this.personMap = new HashMap<String, Person>();
 		this.conversationMap = new HashMap<String, Conversation>();
 		
-		int pop = (int) (Math.random() * 5);
-		List<Person> people = FactoryFactory.getInstance().getPersonFactory()
-				.getMultiple(pop + 5);
-		for (Person p : people) {
-			this.personMap.put(p.getId(), p);
-			for (Conversation c : p.getConversations()) {
-				this.conversationMap.put(c.getId(), c);
-			}
-		}
 		Town town = FactoryFactory.getInstance().getTownFactory().getRandom();
 		if (town.isOpen()) {
+		    int pop = (int) (Math.random() * 5);
+	        List<Person> people = FactoryFactory.getInstance().getPersonFactory()
+	                .getMultiple(pop + 5);
 		    for (Person p : people) {
 		        if (!town.getTownsPeople().contains(p)) {
 		            town.getTownsPeople().add(p);
 		        }
 		    }
+		    List<Conversation> conversations = FactoryFactory.getInstance().getConversationFactory().getMultiple(pop + 5);
+		    Collections.shuffle(conversations);
+		    for (Conversation c : conversations) {
+		        people.get((int)(Math.random() * people.size())).addConversation(c);
+		    }
 		}
-
+		
+		Collections.shuffle(town.getTownsPeople());
+		Collections.shuffle(town.getCritters());
+		Collections.shuffle(town.getItems());
+		
+		for (Person p : town.getTownsPeople()) {
+            this.personMap.put(p.getId(), p);
+            for (Conversation c : p.getConversations()) {
+                this.conversationMap.put(c.getId(), c);
+            }
+        }
+		
 		/*
 		Quest quest = FactoryFactory.getInstance().getQuestFactory()
 				.getRandom();
@@ -124,6 +134,7 @@ public abstract class AbstractController {
 	public void setView(IGameView view) {
 		this.view = view;
 		this.view.setController(this);
+		EventHandler.getInstance().setView(view);
 	}
 
 	public IGameView getView() {
@@ -136,6 +147,7 @@ public abstract class AbstractController {
 
 	public void setPlayerData(PlayerDataMap playerData) {
 		this.playerData = playerData;
+		EventHandler.getInstance().setPlayerDataMap(playerData);
 	}
 	
 	

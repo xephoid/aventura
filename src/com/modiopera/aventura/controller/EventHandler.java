@@ -1,13 +1,16 @@
 package com.modiopera.aventura.controller;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import com.modiopera.aventura.controller.actions.Action;
 import com.modiopera.aventura.model.GameObject;
+import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.view.IGameView;
 
 public class EventHandler {
@@ -17,6 +20,7 @@ public class EventHandler {
 	private Integer eventCount = 0;
 	private Set<Event> eventSet = new HashSet<Event>();
 	private Map<EventEnum, Map<GameObject, Action>> eventToActionMap = new HashMap<EventEnum, Map<GameObject,Action>>();
+	private List<Action> actions = new ArrayList<Action>();
 	private IGameView view;
 	
 	private EventHandler() {
@@ -50,6 +54,7 @@ public class EventHandler {
 	public void mapEventToAction(EventEnum event, GameObject object, Action action) {
 		Map<GameObject, Action> miniMap = this.eventToActionMap.get(event);
 		miniMap.put(object, action);
+		this.actions.add(action);
 	}
 	
 	public Action getAction(Event event) {
@@ -67,5 +72,11 @@ public class EventHandler {
 	
 	protected void setEventSet(Set<Event> eventSet) {
 		this.eventSet = eventSet;
+	}
+	
+	public void setPlayerDataMap(PlayerDataMap dataMap) {
+	    for (Action action : this.actions) {
+	        action.setPlayerData(dataMap);
+	    }
 	}
 }
