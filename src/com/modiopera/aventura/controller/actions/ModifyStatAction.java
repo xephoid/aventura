@@ -10,16 +10,15 @@ public class ModifyStatAction extends Action {
 	private PlayerDataMap playerData;
 	
 	@Override
-	public void act() {
+	public boolean act() {
 		if (this.stat == null) {
-			// TODO: log or exception?
-			return;
+			return false;
 		}
 		if (this.value == null) {
-			// TODO
-			return;
+			return false;
 		}
 		this.playerData.setValue(stat, this.value);
+		return true;
 	}
 	
 	public void setStat(StatEnum stat) {

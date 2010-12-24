@@ -17,6 +17,14 @@ public class Person extends GameObject {
 	private String imageUrl;
 	private GenderEnum gender;
 	
+	public Person(String id) {
+	    this.setId(id);
+	}
+	
+	public Person() {
+	    super();
+	}
+	
 	public boolean isMetBefore() {
 		return metBefore;
 	}

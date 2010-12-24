@@ -1,6 +1,7 @@
 package com.modiopera.aventura.view;
 
 import com.modiopera.aventura.controller.AbstractController;
+import com.modiopera.aventura.controller.actions.Action;
 import com.modiopera.aventura.model.Person;
 import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Conversation;
@@ -15,4 +16,5 @@ public interface IGameView {
 	public void queueEvent();
 	public void setController(AbstractController controller);
 	public AbstractController getController();
+	public void eventOccured(Action action);
 }

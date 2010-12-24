@@ -2,6 +2,7 @@ package com.modiopera.aventura.parser.xml;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,41 +20,82 @@ import org.xml.sax.SAXParseException;
 import com.modiopera.aventura.controller.EventEnum;
 import com.modiopera.aventura.controller.EventHandler;
 import com.modiopera.aventura.controller.actions.ActivateTopicAction;
+import com.modiopera.aventura.controller.actions.CompleteQuestAction;
+import com.modiopera.aventura.model.Critter;
 import com.modiopera.aventura.model.GameObject;
+import com.modiopera.aventura.model.Item;
 import com.modiopera.aventura.model.Person;
 import com.modiopera.aventura.model.Quest;
+import com.modiopera.aventura.model.StatRequirement;
 import com.modiopera.aventura.model.Topic;
 import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Conversation;
 import com.modiopera.aventura.model.conversation.Dialog;
 import com.modiopera.aventura.model.conversation.DialogNode;
 import com.modiopera.aventura.model.conversation.DialogVector;
+import com.modiopera.aventura.model.enums.StatEnum;
 import com.modiopera.aventura.model.factory.FactoryFactory;
 
 public class XMLGameDataParser {
     
-    private static Map<String, DialogVector> dialogMap;
+    private static Map<String, DialogVector> dialogMap = new HashMap<String, DialogVector>();
     private static Map<String, Topic> topicMap = new HashMap<String, Topic>();
+    private static Map<String, Person> personMap = new HashMap<String, Person>();
+    private static Map<String, Quest> questMap = new HashMap<String, Quest>();
+    private static Map<String, Town> townMap = new HashMap<String, Town>();
+    private static Map<String, Item> itemMap = new HashMap<String, Item>();
+    private static Map<String, Critter> critterMap = new HashMap<String, Critter>();
     
     public static void main(String[] argv) {
-        loadData();
+        try {
+            loadData();
+        } catch (XMLParserException e) {
+            e.printStackTrace();
+        }
     }
 
-	public static void loadData() {
-		//parseTownData(getDocument("data/towns.xml"));
-		parsePersonData(getDocument("data/people.xml"));
-		parseQuestData(getDocument("data/quests.xml"));
+	public static void loadData() throws XMLParserException {
+	    
+	    File townDir = new File("data/towns");
+	    
+	    for (File file : townDir.listFiles()) {
+	        if (file.isFile() && file.toString().endsWith(".xml")) {
+	            Document doc = getDocument(file);
+	            List<Town> singleTownList = parseTownData(doc.getElementsByTagName(XMLParserConstants.PARSER_TAG_TOWN));
+	            townMap.put(singleTownList.get(0).getId(), singleTownList.get(0));
+	        }
+	    }
+	    
+	    // Random Towns
+	    Document townDoc = getDocument(new File("data/towns.xml"));
+	    parseTownData(townDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_TOWN));
+		
+	    // Wandering People
+	    Document personDoc = getDocument(new File("data/people.xml"));
+	    parsePersonData(personDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_PERSON), false);
+		
+	    // Random items
+        Document itemDoc = getDocument(new File("data/items.xml"));
+        parseItems(itemDoc.getElementsByTagName("item"));
+        
+        // Random critters
+        Document critterDoc = getDocument(new File("data/critters.xml"));
+        parseCritters(critterDoc.getElementsByTagName("critter"));
+	    
+	    // Random quests
+	    Document questDoc = getDocument(new File("data/quests.xml"));
+	    parseQuestData(null, questDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_QUEST));
 	}
 	
-	public static Document getDocument(String filename) {
+	public static Document getDocument(File file) {
 		Document xml = null;
 		try {
 			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-            xml = docBuilder.parse (new File(filename));
+            xml = docBuilder.parse (file);
             xml.getDocumentElement().normalize();
         } catch (SAXParseException err) {
-        	System.out.println("file: " + filename);
+        	System.out.println("file: " + file);
         	System.out.println ("** Parsing error" + ", line " 
         			+ err.getLineNumber () + ", uri " + err.getSystemId ());
         	System.out.println(" " + err.getMessage ());
@@ -66,7 +108,7 @@ public class XMLGameDataParser {
         return xml;
 	}
 	
-	private static List<Town> parseTownData(NodeList towns) {
+	private static List<Town> parseTownData(NodeList towns) throws XMLParserException {
 	    List<Town> townList = new ArrayList<Town>();
 		if (towns != null) {
 			for (int i = 0; i < towns.getLength(); i++) {
@@ -76,11 +118,22 @@ public class XMLGameDataParser {
 					Element townElem = (Element) node;
 					town.setName(townElem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_NAME));
 					
+					if (townElem.hasAttribute("id")) {
+					    town.setId(townElem.getAttribute("id"));
+					}
+					
+					if (townElem.hasAttribute("open")) {
+					    town.setOpen(true);
+					}
+					
 					town.setDescrption(extractTextFromNode(XMLParserConstants.PARSER_ATTRIBUTE_DESCRIPTION, node));
 					
-					// TODO: parse people
-					// TODO: parse items
-					// TODO: parse critters
+					Node peopleNode = extractFirstNode("people", node);
+					if (peopleNode != null) {
+					    town.setTownsPeople(parsePersonData(peopleNode.getChildNodes(), true));
+					}
+					town.setItems(parseItems(townElem.getElementsByTagName("item")));
+					town.setCritters(parseCritters(townElem.getElementsByTagName("critter")));
 					
 					FactoryFactory.getInstance().getTownFactory().add(town);
 					townList.add(town);
@@ -90,17 +143,28 @@ public class XMLGameDataParser {
 		return townList;
 	}
 	
-	private static void parsePersonData(Document xml) {
-		if (xml == null) {
-			// TODO: throw exception!
-			return;
+	private static List<Person> parsePersonData(NodeList people, boolean inTown) throws XMLParserException {
+	    List<Person> result = new ArrayList<Person>();
+		if (people == null) {
+			return result;
 		}
 		
-		NodeList people = xml.getElementsByTagName(XMLParserConstants.PARSER_TAG_PERSON);
-		
 		for (int i = 0; i < people.getLength(); i++) {
-			Element elem = (Element) people.item(i);
-			Person person = new Person();
+		    Node node = people.item(i);
+		    if (Node.ELEMENT_NODE != node.getNodeType()) {
+		        continue;
+		    }
+			Element elem = (Element) node;
+			if (elem.getTagName() != XMLParserConstants.PARSER_TAG_PERSON) {
+			    throw new XMLParserException("Non person tage in person section! tag: " + elem.getTagName());
+			}
+			Person person = null;
+			if (elem.hasAttribute("id")) {
+                person = getPerson(elem.getAttribute("id"));
+            } else {
+                person = new Person();
+            }
+            
 			person.setName(elem.getAttribute("name"));
 			
 			// initial greeting
@@ -126,41 +190,72 @@ public class XMLGameDataParser {
 					extractFirstNode(XMLParserConstants.PARSER_TAG_ACTION, elem),
 					person);
 			
-			FactoryFactory.getInstance().getPersonFactory().add(person);
+			person.setQuests(parseQuestData(person, elem.getElementsByTagName(XMLParserConstants.PARSER_TAG_QUEST)));
+			
+			for (Node convNode : getChildrenWithTag("conversation", node)) {
+			    if (convNode.getNodeType() == Node.ELEMENT_NODE) {
+			        person.addConversation(parseConversation((Element) convNode));
+			    }
+			}
+			// TODO: parse items
+			
+			personMap.put(person.getId(), person);
+			if (!inTown) {
+			    FactoryFactory.getInstance().getPersonFactory().add(person);
+			}
+			result.add(person);
 		}
+		return result;
 	}
 	
-	private static void parseQuestData(Document xml) {
-		if (xml == null) {
-			return;
+	private static List<Quest> parseQuestData(Person requestor, NodeList questData) throws XMLParserException {
+	    List<Quest> result = new ArrayList<Quest>();
+		if (questData == null) {
+			return result;
 		}
-		dialogMap = new HashMap<String, DialogVector>();
-		NodeList questData = xml.getElementsByTagName(XMLParserConstants.PARSER_TAG_QUEST);
 		for (int i = 0; i < questData.getLength(); i++) {
 			Node node = questData.item(i);
+			
+			Element elem = (Element) node;
+			
 			Node exNode = extractFirstNode(XMLParserConstants.PARSER_TAG_EXPLINATION, node);
-			Quest quest = new Quest();
-			//Dialog intro = new Dialog();
-			//intro.setText(extractTextFromNode(XMLParserConstants.PARSER_TAG_DIALOG, exNode));
-			//quest.setIntro(intro);
+			Quest quest = null;
+			if (elem.hasAttribute("id")) {
+                quest = getQuest(elem.getAttribute("id"));
+            } else {
+                quest = new Quest();
+            }
+             
+			quest.setRequestor(requestor);
+			// Explination
 			quest.setExplination(parseConversation((Element) extractFirstNode(XMLParserConstants.PARSER_TAG_CONVERSATION, exNode)));
 			
+			// Information
 			Element infoElem = (Element) extractFirstNode(XMLParserConstants.PARSER_TAG_INFORMATION, node);
-			NodeList infoNodes = infoElem.getElementsByTagName(XMLParserConstants.PARSER_TAG_CONVERSATION);
-			List<Conversation> infos = new ArrayList<Conversation>();
-			for(int j = 0; j < infoNodes.getLength(); j++) {
-			    infos.add(parseConversation((Element) infoNodes.item(j)));
+			if (infoElem != null) {
+			    NodeList infoNodes = infoElem.getElementsByTagName(XMLParserConstants.PARSER_TAG_CONVERSATION);
+			    List<Conversation> infos = new ArrayList<Conversation>();
+			    for(int j = 0; j < infoNodes.getLength(); j++) {
+			        infos.add(parseConversation((Element) infoNodes.item(j)));
+			    }
+			    quest.setInformation(infos);
 			}
-			quest.setInformation(infos);
 			
-			Element solElem = (Element) extractFirstNode(XMLParserConstants.PARSER_TAG_SOLUTION, node);
+			// Solved conversations
+			Element solElem = (Element) extractFirstNode(XMLParserConstants.PARSER_TAG_SOLVED, node);
 			quest.getSolveds().add(parseConversation((Element) extractFirstNode(XMLParserConstants.PARSER_TAG_CONVERSATION, solElem)));
 			
-			FactoryFactory.getInstance().getQuestFactory().add(quest);
+			if (requestor == null) {
+			    FactoryFactory.getInstance().getQuestFactory().add(quest);
+			}
+			result.add(quest);
+			questMap.put(quest.getId(), quest);
 		}
+		return result;
 	}
 	
-	protected static Conversation parseConversation(Element xml) {
+	protected static Conversation parseConversation(Element xml) throws XMLParserException {
+	    dialogMap.clear();
 		Conversation conv = new Conversation();
 		
 		if (xml.hasAttribute(XMLParserConstants.PARSER_ATTRIBUTE_TOPIC)) {
@@ -186,38 +281,51 @@ public class XMLGameDataParser {
 					conv);
 		}
 		
-		// TODO: events
 		return conv;
 	}
 	
-	protected static void parseSubNodes(Node xml, DialogNode parent) {
+	protected static void parseSubNodes(Node xml, DialogNode parent) throws XMLParserException {
 		Element elem = (Element) xml;
 		
 		DialogNode leaf = new DialogNode();
+		StatRequirement req = null;
+		
+		for (StatEnum stat : EnumSet.allOf(StatEnum.class)) {
+		    String abrev = stat.getDescription().toLowerCase();
+		    if (elem.hasAttribute(abrev)) {
+		        req = new StatRequirement(stat, Integer.parseInt(elem.getAttribute(abrev)));
+		    }
+		}
 		
 		if(elem.hasAttribute("ref")) {
 		    // Node is a refference to another node.
 		    // Create a copy of the vector to give to the new parent
 		    DialogVector example = dialogMap.get(elem.getAttribute("ref"));
 		    if (example == null) {
-		        // TODO: throw exeption!
+		        throw new XMLParserException("Node with ref id " + elem.getAttribute("ref") + " reference before definition.");
 		    }
 		    DialogVector copy = new DialogVector();
 		    copy.setChild(example.getChild());
 		    copy.setPlayerDialog(example.getPlayerDialog());
+		    copy.setRequirement(req);
 		    parent.addVector(copy);
 		} else {
 		    Dialog dialog = new Dialog();
 		    dialog.setText(extractTextFromNode(XMLParserConstants.PARSER_TAG_DIALOG, xml));
 		    leaf.setDialog(dialog);
 		    Dialog player = new Dialog();
-	        player.setText(extractTextFromNode(XMLParserConstants.PARSER_TAG_PLAYER, xml));
+		    String playerText = extractTextFromNode(XMLParserConstants.PARSER_TAG_PLAYER, xml);
+		    if (playerText == null) {
+		        throw new XMLParserException("No player tag for node! " + parent.toString());
+		    }
+	        player.setText(playerText);
 	        
 	        parseAction(EventEnum.SPEAK_DIALOG, 
 					extractFirstNode(XMLParserConstants.PARSER_TAG_ACTION, xml),
 					dialog);
 	        
 	        DialogVector vector = parent.addNode(player, leaf);
+	        vector.setRequirement(req);
 	        if (elem.hasAttribute("id") && !dialogMap.containsKey(elem.getAttribute("id"))) {
 	            dialogMap.put(elem.getAttribute("id"), vector);
 	        }
@@ -227,6 +335,58 @@ public class XMLGameDataParser {
 		for(Node child : nodeChildren) {
 		    parseSubNodes(child, leaf);
 		}
+	}
+	
+	private static List<Item> parseItems(NodeList nodes) {
+	    List<Item> results = new ArrayList<Item>();
+	    if (nodes == null) {
+	        return results;
+	    }
+	    for (int i = 0; i < nodes.getLength(); i++) {
+	        Element elem = (Element) nodes.item(i);
+	        Item item = null;
+	        if (elem.hasAttribute(XMLParserConstants.PARSER_ATTRIBUTE_ID)) {
+	            item = getItem(elem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_ID));
+	        } else {
+	            item = new Item();
+	        }
+	        item.setName(elem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_NAME));
+	        item.setDescrption(extractTextFromNode(XMLParserConstants.PARSER_ATTRIBUTE_DESCRIPTION, elem));
+	        Element displayElem = (Element) extractFirstNode("display", elem);
+	        item.setImgUrl(displayElem.getAttribute("url"));
+	        FactoryFactory.getInstance().getItemFactory().add(item);
+	        results.add(item);
+	    }
+	    return results;
+	}
+	
+	private static List<Critter> parseCritters(NodeList nodes) {
+	    List<Critter> results = new ArrayList<Critter>();
+	    if (nodes == null) {
+	        return results;
+	    }
+	    for (int i = 0; i < nodes.getLength(); i++) {
+	        Element elem = (Element) nodes.item(i);
+	        Critter critter = null;
+	        if (elem.hasAttribute(XMLParserConstants.PARSER_ATTRIBUTE_ID)) {
+	            critter = getCritter(elem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_ID));
+	        } else {
+	            critter = new Critter();
+	        }
+	        critter.setName(elem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_NAME));
+	        
+	        Element statElem = (Element) extractFirstNode("stats", elem);
+	        Map<StatEnum, Integer> stats = new HashMap<StatEnum, Integer>();
+	        for (StatEnum stat : EnumSet.allOf(StatEnum.class)) {
+	            if (statElem.hasAttribute(stat.getDescription().toLowerCase())) {
+	                stats.put(stat, Integer.parseInt(statElem.getAttribute(stat.getDescription().toLowerCase())));
+	            }
+	        }
+	        critter.setBaseStats(stats);
+	        FactoryFactory.getInstance().getCritterFactory().add(critter);
+	        results.add(critter);
+	    }
+	    return results;
 	}
 	
 	private static List<Node> getChildrenWithTag(String tag, Node node) {
@@ -273,17 +433,57 @@ public class XMLGameDataParser {
 				ActivateTopicAction action = new ActivateTopicAction();
 				action.setTopic(topic);
 				EventHandler.getInstance().mapEventToAction(eventType, actionObject, action);
+			} else if (elem.hasAttribute("quest")) {
+			    Quest quest = getQuest(elem.getAttribute("quest"));
+			    CompleteQuestAction action = new CompleteQuestAction();
+			    action.setQuest(quest);
+			    EventHandler.getInstance().mapEventToAction(eventType, actionObject, action);
 			}
 		}
 	}
 	
+	private static Critter getCritter(String id) {
+	    if (!critterMap.containsKey(id)) {
+	        Critter critter = new Critter();
+	        critter.setId(id);
+	        critterMap.put(id, critter);
+	    }
+	    return critterMap.get(id);
+	}
+	
+	private static Item getItem(String id) {
+	    if (!itemMap.containsKey(id)) {
+	        Item item = new Item();
+	        item.setId(id);
+	        itemMap.put(id, item);
+	    }
+	    return itemMap.get(id);
+	}
+	
+	private static Quest getQuest(String id) {
+	    if (!questMap.containsKey(id)) {
+	        Quest quest = new Quest();
+	        quest.setId(id);
+	        questMap.put(id, quest);
+	    }
+	    return questMap.get(id);
+	}
+	
+	private static Person getPerson(String id) {
+	    if (!personMap.containsKey(id)) {
+	        Person person = new Person(id);
+	        personMap.put(id, person);
+	    }
+	    return personMap.get(id);
+	}
+	
 	private static Topic getTopic(String id) {
-		if (topicMap.containsKey(id)) {
-			return topicMap.get(id);
+		if (!topicMap.containsKey(id)) {
+		    Topic topic = new Topic();
+	        topic.setId(id);
+	        topicMap.put(id, topic);
+			
 		}
-		Topic topic = new Topic();
-		topic.setId(id);
-		topicMap.put(id, topic);
-		return topic;
+		return topicMap.get(id);
 	}
 }

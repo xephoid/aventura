@@ -14,6 +14,7 @@ import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Conversation;
 import com.modiopera.aventura.model.factory.FactoryFactory;
 import com.modiopera.aventura.parser.xml.XMLGameDataParser;
+import com.modiopera.aventura.parser.xml.XMLParserException;
 import com.modiopera.aventura.view.IGameView;
 
 public abstract class AbstractController {
@@ -57,7 +58,13 @@ public abstract class AbstractController {
 	}
 
 	protected void setup() {
-		XMLGameDataParser.loadData();
+		try {
+            XMLGameDataParser.loadData();
+        } catch (XMLParserException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return;
+        }
 		this.personMap = new HashMap<String, Person>();
 		this.conversationMap = new HashMap<String, Conversation>();
 		
@@ -71,11 +78,19 @@ public abstract class AbstractController {
 			}
 		}
 		Town town = FactoryFactory.getInstance().getTownFactory().getRandom();
-		town.setTownsPeople(people);
+		if (town.isOpen()) {
+		    for (Person p : people) {
+		        if (!town.getTownsPeople().contains(p)) {
+		            town.getTownsPeople().add(p);
+		        }
+		    }
+		}
 
+		/*
 		Quest quest = FactoryFactory.getInstance().getQuestFactory()
 				.getRandom();
 		this.assignQuest(quest, people);
+		*/
 		this.currentTown = town;
 	}
 

@@ -10,13 +10,15 @@ public class Topic extends GameObject {
 	private Map<Person, Conversation> conversations;
 	private boolean active = false;
 
-	public void activate() {
+	public boolean activate() {
 		if (!this.isActive()) {
 			for(Map.Entry<Person, Conversation> entry : this.conversations.entrySet()) {
 				entry.getKey().addConversation(entry.getValue());
 			}
 			this.active = true;
+			return true;
 		}
+		return false;
 	}
 	
 	public Map<Person, Conversation> getConversations() {

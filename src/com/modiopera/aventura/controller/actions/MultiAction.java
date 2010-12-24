@@ -8,10 +8,12 @@ public class MultiAction extends Action {
 	private List<Action> actions;
 	
 	@Override
-	public void act() {
+	public boolean act() {
 		for(Action action : this.actions) {
 			action.act();
 		}
+		//TODO: return true only if one worked??
+		return true;
 	}
 	
 	public void addAction(Action action) {

@@ -9,8 +9,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.modiopera.aventura.controller.actions.Action;
 import com.modiopera.aventura.model.Person;
-import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.Quest;
 import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Conversation;
@@ -18,7 +18,6 @@ import com.modiopera.aventura.model.conversation.ConversationException;
 import com.modiopera.aventura.model.conversation.ConversationFactory;
 import com.modiopera.aventura.model.conversation.Dialog;
 import com.modiopera.aventura.model.dungeon.Dungeon;
-import com.modiopera.aventura.model.enums.PlayerTypeEnum;
 import com.modiopera.aventura.view.GameView;
 
 public class TextBasedView extends GameView {
@@ -95,7 +94,7 @@ public class TextBasedView extends GameView {
 			for(Conversation bit : person.getConversations()) {
 				try {
 					bit.init();
-					for(Dialog dialog : bit.getOptions(new PlayerDataMap(PlayerTypeEnum.CUSTOM))) {
+					for(Dialog dialog : bit.getOptions(this.controller.getPlayerData())) {
 						System.out.println("(" + startIdx + ") " + dialog.getText());
 					}
 					this.conversationMap.put(startIdx++, bit);
@@ -153,7 +152,7 @@ public class TextBasedView extends GameView {
 			do {
 				this.spokeDialog(conversation.getCurrentDialog());
 				System.out.println(this.controller.getCurrentPerson().getName() + ": " + conversation.getCurrentDialog().getText());
-				List<Dialog> options = conversation.getOptions(new PlayerDataMap(PlayerTypeEnum.CUSTOM));
+				List<Dialog> options = conversation.getOptions(this.controller.getPlayerData());
 				if (options != null && !options.isEmpty()) {
 					int idx = 1;
 					for(Dialog d : options) {
@@ -177,4 +176,9 @@ public class TextBasedView extends GameView {
 	public void startDungeon(Dungeon dungeon) {
 		// TODO
 	}
+
+    @Override
+    public void eventOccured(Action action) {
+        System.out.println("Event: " + action);
+    }
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.modiopera.aventura.controller.actions.Action;
 import com.modiopera.aventura.model.GameObject;
+import com.modiopera.aventura.view.IGameView;
 
 public class EventHandler {
 
@@ -16,6 +17,7 @@ public class EventHandler {
 	private Integer eventCount = 0;
 	private Set<Event> eventSet = new HashSet<Event>();
 	private Map<EventEnum, Map<GameObject, Action>> eventToActionMap = new HashMap<EventEnum, Map<GameObject,Action>>();
+	private IGameView view;
 	
 	private EventHandler() {
 		for(EventEnum event : EnumSet.allOf(EventEnum.class)) {
@@ -39,6 +41,7 @@ public class EventHandler {
 		Action action = this.getAction(e);
 		if (action != null) {
 			action.act();
+			this.view.eventOccured(action);
 		}
 		
 		return e;
@@ -56,6 +59,10 @@ public class EventHandler {
 	
 	public Integer getEventCount() {
 		return eventCount;
+	}
+	
+	public void setView(IGameView view) {
+	    this.view = view;
 	}
 	
 	protected void setEventSet(Set<Event> eventSet) {

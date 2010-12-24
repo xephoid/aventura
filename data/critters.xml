@@ -1,2 +1,24 @@
 <critters>
+    <critter name="Small Rodent" urlPath="/images/critters/smallrodent">
+        <stats
+            str="1"
+            rng="1"
+            int="1"
+            frt="2"
+            cam="0"
+            spd="7"
+            crt="2"
+        />
+    </critter>
+    <critter name="Tiger guy" urlPath="/images/critters/tiger">
+        <stats
+            str="7"
+            rng="1"
+            int="10"
+            frt="10"
+            cam="0"
+            spd="4"
+            crt="1"
+        />
+    </critter>
 </critters>

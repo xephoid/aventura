@@ -100,7 +100,7 @@
             <conversation>
                 <dialog></dialog>
                 <node>
-                    <person>How are those clean britches?</person>
+                    <player>How are those clean britches?</player>
                     <dialog>Words... cannot describe.</dialog>
                 </node>
                 <exit>Have a great day!</exit>

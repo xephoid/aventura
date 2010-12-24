@@ -14,10 +14,11 @@ public interface XMLParserConstants {
 	public static final String PARSER_TAG_PLAYER = "player";
 	public static final String PARSER_TAG_NODE = "node";
 	public static final String PARSER_TAG_ACTION = "action";
-	public static final String PARSER_TAG_SOLUTION = "solution";
+	public static final String PARSER_TAG_SOLVED = "solved";
 	public static final String PARSER_TAG_INFORMATION = "information";
 	public static final String PARSER_ATTRIBUTE_NAME = "name";
 	public static final String PARSER_ATTRIBUTE_DESCRIPTION = "description";
 	public static final String PARSER_ATTRIBUTE_TOPIC = "topic";
+	public static final String PARSER_ATTRIBUTE_ID = "id";
 
 }
