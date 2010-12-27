@@ -139,6 +139,7 @@ public abstract class AbstractController {
 		Collections.shuffle(people);
 		Person person = people.get(1);
 		person.addQuest(quest);
+		quest.setRequestor(person);
 		if (quest.getInformation() != null) {
 			for (Conversation c : quest.getInformation()) {
 				person.addConversation(c);
