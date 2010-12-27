@@ -137,8 +137,8 @@ public abstract class AbstractController {
 					"People list must have at least two people");
 		}
 		Collections.shuffle(people);
-		Person person = people.get(0);
-		
+		Person person = people.get(1);
+		person.addQuest(quest);
 		if (quest.getInformation() != null) {
 			for (Conversation c : quest.getInformation()) {
 				person.addConversation(c);
