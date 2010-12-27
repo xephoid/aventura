@@ -2,7 +2,7 @@ package com.modiopera.aventura.model;
 
 import com.modiopera.aventura.model.enums.StatEnum;
 
-public class StatRequirement {
+public class StatRequirement extends Requirement {
 	private StatEnum stat;
 	private int amount;
 	

@@ -25,8 +25,10 @@ import com.modiopera.aventura.controller.actions.GiveItemToPlayerAction;
 import com.modiopera.aventura.model.Critter;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.Item;
+import com.modiopera.aventura.model.ItemRequirement;
 import com.modiopera.aventura.model.Person;
 import com.modiopera.aventura.model.Quest;
+import com.modiopera.aventura.model.Requirement;
 import com.modiopera.aventura.model.StatRequirement;
 import com.modiopera.aventura.model.Topic;
 import com.modiopera.aventura.model.Town;
@@ -64,6 +66,7 @@ public class XMLGameDataParser {
 	            Document doc = getDocument(file);
 	            List<Town> singleTownList = parseTownData(doc.getElementsByTagName(XMLParserConstants.PARSER_TAG_TOWN));
 	            townMap.put(singleTownList.get(0).getId(), singleTownList.get(0));
+	            System.out.println("Loading town " + file + "...");
 	        }
 	    }
 	    
@@ -235,7 +238,7 @@ public class XMLGameDataParser {
             }
              
 			quest.setRequestor(requestor);
-			// Explination
+			// Explanation
 			quest.setExplination(parseConversation((Element) extractFirstNode(XMLParserConstants.PARSER_TAG_CONVERSATION, exNode)));
 			
 			// Information
@@ -252,6 +255,12 @@ public class XMLGameDataParser {
 			// Solved conversations
 			Element solElem = (Element) extractFirstNode(XMLParserConstants.PARSER_TAG_SOLVED, node);
 			quest.getSolveds().add(parseConversation((Element) extractFirstNode(XMLParserConstants.PARSER_TAG_CONVERSATION, solElem)));
+			
+			// Items
+			quest.setItems(parseItems(elem.getElementsByTagName("item")));
+			
+			// Critters
+			quest.setCritters(parseCritters(elem.getElementsByTagName("critter")));
 			
 			if (requestor == null) {
 			    FactoryFactory.getInstance().getQuestFactory().add(quest);
@@ -296,13 +305,16 @@ public class XMLGameDataParser {
 		Element elem = (Element) xml;
 		
 		DialogNode leaf = new DialogNode();
-		StatRequirement req = null;
+		Requirement req = null;
 		
 		for (StatEnum stat : EnumSet.allOf(StatEnum.class)) {
 		    String abrev = stat.getDescription().toLowerCase();
 		    if (elem.hasAttribute(abrev)) {
 		        req = new StatRequirement(stat, Integer.parseInt(elem.getAttribute(abrev)));
 		    }
+		}
+		if (elem.hasAttribute("item")) {
+			req = new ItemRequirement(getItem(elem.getAttribute("item")));
 		}
 		
 		if(elem.hasAttribute("ref")) {
@@ -382,6 +394,8 @@ public class XMLGameDataParser {
 	            critter = new Critter();
 	        }
 	        critter.setName(elem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_NAME));
+	        critter.setHerdSize(Integer.parseInt(elem.getAttribute("herd")));
+	        critter.setImgPath(elem.getAttribute("urlPath"));
 	        
 	        Element statElem = (Element) extractFirstNode("stats", elem);
 	        Map<StatEnum, Integer> stats = new HashMap<StatEnum, Integer>();
@@ -495,7 +509,6 @@ public class XMLGameDataParser {
 		    Topic topic = new Topic();
 	        topic.setId(id);
 	        topicMap.put(id, topic);
-			
 		}
 		return topicMap.get(id);
 	}

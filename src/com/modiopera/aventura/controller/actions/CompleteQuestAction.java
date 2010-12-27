@@ -8,7 +8,7 @@ public class CompleteQuestAction extends Action {
     
     @Override
     public boolean act() {
-        if (this.quest.isCompleted()) {
+        if (!this.quest.isCompleted()) {
             this.quest.completeQuest();
             return true;
         }

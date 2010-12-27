@@ -22,6 +22,7 @@ public class EventHandler {
 	private Map<EventEnum, Map<GameObject, Action>> eventToActionMap = new HashMap<EventEnum, Map<GameObject,Action>>();
 	private List<Action> actions = new ArrayList<Action>();
 	private IGameView view;
+	private PlayerDataMap playerDataMap;
 	
 	private EventHandler() {
 		for(EventEnum event : EnumSet.allOf(EventEnum.class)) {
@@ -53,6 +54,7 @@ public class EventHandler {
 	
 	public void mapEventToAction(EventEnum event, GameObject object, Action action) {
 		Map<GameObject, Action> miniMap = this.eventToActionMap.get(event);
+		action.setPlayerData(this.playerDataMap);
 		miniMap.put(object, action);
 		this.actions.add(action);
 	}
@@ -78,5 +80,6 @@ public class EventHandler {
 	    for (Action action : this.actions) {
 	        action.setPlayerData(dataMap);
 	    }
+	    this.playerDataMap = dataMap;
 	}
 }

@@ -37,11 +37,11 @@ public class PlayerDataMap {
 			case MONK :
 				str = 8;
 				rng = 1;
-				ine = 10;
+				ine = 7;
 				cam = 2;
 				cha = 2;
-				frt = 7;
-				spd = 4;
+				frt = 10;
+				spd = 6;
 				break;
 			case MARKSMAN :
 				str = 10;
@@ -50,7 +50,7 @@ public class PlayerDataMap {
 				cam = 4;
 				cha = 3;
 				frt = 2;
-				spd = 6;
+				spd = 4;
 				break;
 			case NINJA :
 				str = 3;

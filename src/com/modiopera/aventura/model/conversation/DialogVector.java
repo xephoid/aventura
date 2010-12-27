@@ -1,12 +1,12 @@
 package com.modiopera.aventura.model.conversation;
 
-import com.modiopera.aventura.model.StatRequirement;
+import com.modiopera.aventura.model.Requirement;
 
 public class DialogVector {
 	private Dialog playerDialog;
 	private DialogNode parent;
 	private DialogNode child;
-	private StatRequirement requirement;
+	private Requirement requirement;
 	
 	public Dialog getPlayerDialog() {
 		return playerDialog;
@@ -26,10 +26,10 @@ public class DialogVector {
 	public void setChild(DialogNode child) {
 		this.child = child;
 	}
-	public void setRequirement(StatRequirement requirement) {
+	public void setRequirement(Requirement requirement) {
 		this.requirement = requirement;
 	}
-	public StatRequirement getRequirement() {
+	public Requirement getRequirement() {
 		return requirement;
 	}
 }

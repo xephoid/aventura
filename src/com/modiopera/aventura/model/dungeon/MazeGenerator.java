@@ -6,7 +6,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class MazeGenerator {
-	public enum Dir {
+	private enum Dir {
 		UP(0),
 		DOWN(1),
 		LEFT(2),
@@ -36,12 +36,14 @@ public class MazeGenerator {
 		}
 	}
 	
-	public class Room {
+	private class Room {
 		public boolean[] walls = new boolean[4];
 		public boolean visited = false;
 	}
 	
-	public Room[][] generateMaze(int width, int height) {
+	private static final int SQUARE_SIZE = 5;
+	
+	private Room[][] generateMaze(int width, int height) {
 		Room[][] rooms = new Room[width][height];
 		for (int i = 0; i < rooms.length ;i ++) {
 			for (int j = 0; j < rooms[i].length; j++) {
@@ -92,4 +94,57 @@ public class MazeGenerator {
 		return x >= 0 && x < rooms.length && y >= 0 && y < rooms[0].length;
 	}
 	
+	public Dungeon generateDungeon(int width, int height) {
+		Dungeon dungeon = new Dungeon(width, height);
+		dungeon.initialize();
+
+		MazeGenerator maze = new MazeGenerator();
+		Room[][] rooms =  maze.generateMaze(width / SQUARE_SIZE, width / SQUARE_SIZE);
+		
+		// Generate borders
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				if (x == 0 || y == 0 || x == width -1 || y == width -1) {
+					dungeon.setTileType(x, y, DungeonTileTypeEnum.WALL);
+				}
+			}
+		}
+		
+		
+		for (int i = 0; i < rooms.length; i++) {
+			for (int j = 0; j < rooms[i].length; j++) {
+				for (Dir d : EnumSet.allOf(Dir.class)) {
+					if (!rooms[i][j].walls[d.getNum()]) {
+						switch(d) {
+							case UP:
+								for (int k = 0; k < SQUARE_SIZE; k++) {
+									dungeon.setTileType((i * SQUARE_SIZE) + k, j * SQUARE_SIZE, DungeonTileTypeEnum.WALL);
+								}
+								break;
+							case DOWN:
+								for (int k = 0; k < SQUARE_SIZE; k++) {
+									dungeon.setTileType((i * SQUARE_SIZE) + k, (j * SQUARE_SIZE) + SQUARE_SIZE, DungeonTileTypeEnum.WALL);
+								}
+								break;
+							case LEFT:
+								for (int k = 0; k < SQUARE_SIZE; k++) {
+									dungeon.setTileType(i * SQUARE_SIZE, (j * SQUARE_SIZE) + k, DungeonTileTypeEnum.WALL);
+								}
+								break;
+							case RIGHT:
+								for (int k = 0; k < SQUARE_SIZE; k++) {
+									dungeon.setTileType((i * SQUARE_SIZE) + SQUARE_SIZE, (j * SQUARE_SIZE) + k, DungeonTileTypeEnum.WALL);
+								}
+								break;
+						}
+					}
+				}
+			}
+		}
+		
+		dungeon.setStartx(1);
+		dungeon.setStarty(1);
+		
+		return dungeon;
+	}
 }

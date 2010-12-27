@@ -24,6 +24,7 @@ public abstract class DungeonObject {
 	
 	public abstract String getCurrentImageURL();
 	public abstract void visited(DungeonObject obj);
+	public abstract void interact();
 
 	public void setCurrentTile(DungeonTile currentTile) {
 		this.currentTile = currentTile;

@@ -1,0 +1,5 @@
+<towns>
+	<town name="Margadon" open="true" >
+        <description>This is a random town.  Everything in it is randomly added from the pool of stuff.</description>
+    </town>
+</towns>

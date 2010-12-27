@@ -31,6 +31,7 @@ import com.modiopera.aventura.model.conversation.DialogNode;
 import com.modiopera.aventura.view.GameView;
 import com.modiopera.aventura.view.text.TextBasedView;
 
+@Deprecated
 public class XMLGameParser {
 
 	public static final String PARSER_TAG_TOWN = "town";
@@ -45,6 +46,7 @@ public class XMLGameParser {
 	
 	private XMLGameParser() {}
 	
+	@Deprecated
 	public static void parseAndRun(String filename) {
 		Document xml = null;
 		try {

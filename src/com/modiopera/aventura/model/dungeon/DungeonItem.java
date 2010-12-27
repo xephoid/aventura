@@ -12,7 +12,7 @@ public class DungeonItem extends DungeonObject {
 	
 	@Override
 	public String getCurrentImageURL() {
-		return "";
+		return this.actualItem.getImgUrl();
 	}
 
 	@Override
@@ -20,6 +20,12 @@ public class DungeonItem extends DungeonObject {
 		if (obj.isPlayer()) {
 			// TODO: give player the item...
 		}
+	}
+
+	@Override
+	public void interact() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

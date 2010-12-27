@@ -1,0 +1,44 @@
+<people>
+	<person id="glennl" name="Glen Leisenring">
+		<portrait url="/images/portraits/man3.jpg" />
+		<initialGreeting>Hi.</initialGreeting>
+		<greeting>Hello.</greeting>
+		<introduction>I am Glen.  Who is asking?</introduction>
+	</person>
+	<person id="mhellams" name="Moses Hellams">
+		<portrait url="/images/portraits/man7.jpg" />
+		<initialGreeting>Hello there.</initialGreeting>
+		<greeting>How can I help you?</greeting>
+		<introduction>I am Moses Hellams.  I've been around.</introduction>
+	</person>
+	<person id="drek" name="Drek">
+		<portrait url="/images/portraits/man5.jpg" />
+		<initialGreeting>Hey.</initialGreeting>
+		<greeting>Hey.</greeting>
+		<introduction>I'm Drek Jeter.  I am whom you think I am.</introduction>
+	</person>
+	<person id="palin" name="Sarah">
+		<portrait url="/images/portraits/woman5.jpg" />
+		<initialGreeting>Hiya!</initialGreeting>
+		<greeting>Hey there again!</greeting>
+		<introduction>I'm Sarah.  Sure is great to meetcha!</introduction>
+	</person>
+	<person id="kathy" name="Katherine">
+		<portrait url="/images/portraits/woman4.jpg" />
+		<initialGreeting>Welcome.</initialGreeting>
+		<greeting>Good to see you again.</greeting>
+		<introduction>My name is Katherine.  I'm kind of a big deal.</introduction>
+	</person>
+	<person id="aherb" name="Abdul Herbster">
+		<portrait url="/images/portraits/man6.jpg" />
+		<initialGreeting>Hey.</initialGreeting>
+		<greeting>Word.</greeting>
+		<introduction>Abdul.  Explorer EXTRODINARE.</introduction>
+	</person>
+	<person id="seth" name="Seth">
+		<portrait url="/images/portraits/man8.jpg" />
+		<initialGreeting>Greetings to you.</initialGreeting>
+		<greeting>Hello human.</greeting>
+		<introduction>I'm Seth.  I am totally a human.  I love doing human things like consuming plant and animal matter.</introduction>
+	</person>
+</people>

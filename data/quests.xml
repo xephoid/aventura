@@ -1,0 +1,39 @@
+<quests>
+	<quest id="otherQuest" name="The Puppet">
+		<explination>
+			<conversation>
+				<dialog>Get me a sock puppet...</dialog>
+				<exit>Later.</exit>
+				<node>
+					<player>Ok...</player>
+					<dialog>Magnificent!</dialog>
+				</node>
+			</conversation>
+		</explination>
+		<information>
+			<conversation>
+				<dialog></dialog>
+				<exit>Your welcome.</exit>
+				<node item="sockPuppet">
+					<player>I've got your sock puppet.</player>
+					<dialog>Give it!</dialog>
+					<action quest="otherQuest" />
+				</node>
+			</conversation>
+		</information>
+		<solved>
+			<conversation>
+				<dialog></dialog>
+				<exit>You're welcome!</exit>
+				<node>
+					<player>How do you like your sock puppet?</player>
+					<dialog>He turned out to be a dirty double crosser.</dialog>
+				</node>
+			</conversation>
+		</solved>
+		<item id="sockPuppet">
+			<display url="" />
+        	<description>This sock puppet seems somewhat untrustworthy.</description>
+		</item>
+	</quest>
+</quests>

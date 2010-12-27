@@ -1,0 +1,42 @@
+<items>
+	<item name="Rubber Ducky">
+        <display url="" />
+        <description>It's a duck... and it's rubber.</description>
+	</item>
+	<item name="Spunge" plural="Spunges">
+        <display url="" />
+        <description>This spunge is slightly moist.</description>
+	</item>
+	<item name="Stuff..." plural="Things...">
+        <display url="" />
+        <description>You know...  The thing, with the... the stuff!</description>
+	</item>
+	<item name="Doohickey"  plural="Doohickies">
+        <display url="" />
+        <description>Also known as a thingamabob.</description>
+	</item>
+	<item name="Eye of Newt" plural="Eyes of Newt">
+        <display url="" />
+        <description>The name says it all.</description>
+	</item>
+	<item name="Rock" plural="Rocks">
+        <display url="" />
+        <description>It's a rock.</description>
+	</item>
+	<item name="Tibia">
+        <display url="" />
+        <description>This is a leg bone.  Hopefully not human.</description>
+	</item>
+	<item name="Humerus">
+        <display url="" />
+        <description>You found this humerus.</description>
+	</item>
+	<item name="Sword of Great Importance">
+        <display url="" />
+        <description>This is serious you guys.</description>
+	</item>
+	<item name="Incriminating Photo">
+        <display url="" />
+        <description>A photo of you from that night.  You know the one I'm talking about.  Oh now you don't remember?</description>
+	</item>
+</items>

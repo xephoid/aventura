@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<town name="TownVille">
+	<description>
+		Townville is a pretty average town.  It has some people, farms, a town hall.  You know, town stuff.
+	</description>
+	<person name="Guy McDude">
+		<initialGreeting>Hello there</initialGreeting>
+		<greeting>Howdy again.</greeting>
+		<introduction>
+			My name is Guy.  Guy McDude, I live with my wife, Woman, in our farm near the outside of town.
+		</introduction>
+		<quest name="You're bugging me" itemId="pesticides">
+			<explination>
+				I rekon I really need one them new fangled whatchimacalleds, um you know (whispers) pesticides.  Been having problems with the crops lately so's it'd be nice to get something to git ride of those there pests.
+			</explination>
+		</quest>
+		<item id="weedWacker" name="Weed wacker" />
+	</person>
+	
+	<person	name="Gerry Lawnman" initialGreeting="Hi" greeting="Hi again">
+		<introduction>I am Gerry Lawnman, I do lawns.  It's what I do.</introduction>
+		<quest name="Get whacked">
+			<explination>
+				I need a new weed whacker, mine just broke.
+			</explination>
+			<item id="pesticides" name="Pesticides" />
+		</quest>
+		<item id="pesticides" name="Pesticides" />
+		<conversation topic="evol">
+			<node>
+				<option>
+					What is the deal with Evol Lady?
+				</option>
+				<dialog>
+					Husband was murdered recently.  She seems pretty wound up about it.  That's all I know.
+				</dialog>
+				<event>
+					<action class="ActivateTopic">
+						<property name="topic" id="murder" />
+					</action>
+				</event>
+			</node>
+		</conversation>
+	</person>
+	<person name="Person Notathing">
+		<initialGreeting>
+			How's it going?
+		</initialGreeting>
+		<greeting>
+			Nice to see you again.
+		</greeting>
+		<introduction>
+			I'm not just A person I AM Person.  Person Notathing.  Nice to meet you.
+		</introduction>
+		<conversation topic="murder">
+			<node>
+				<dialog>
+					I know nothing about the subject.
+				</dialog>
+				<option>
+					Do you know who murdered Evol Lady's husband?
+				</option>
+			</node>
+		</conversation>
+		<conversation topic="lady">
+			<node>
+				<dialog>
+					Not at all suprised.
+				</dialog>
+				<option>
+					Did you know Evol Lady hired someone to kill her husband?
+				</option>
+			</node>
+		</conversation>
+	</person>
+	<person name="Friendly the Hobo">
+		<initialGreeting>Sprrr Channnnnnge?</initialGreeting>
+		<greeting>I'm not drunk!</greeting>
+		<introduction>I am quite friendly</introduction>
+		<conversation topic="murder">
+			<node>
+				<dialog>
+					Person! I him saw the other day.  I sure did see him.
+				</dialog>
+				<option>
+					Have you seen anything regarding the murder of Evol Lady's husband?
+				</option>
+			</node>
+		</conversation>
+	</person>
+	<person name="Girl Female">
+		<initialGreeting>Who are you?</initialGreeting>
+		<greeting>Leave me alone.</greeting>
+		<introduction>Do I know you?</introduction>
+		<conversation topic="murder">
+			<node>
+				<dialog>
+					I ain't talking to nobody.  I don't want to be next!
+				</dialog>
+				<option>
+					Do you know anything regarding the murder of Evol Lady's husband?
+				</option>
+			</node>
+		</conversation>
+		<conversation topic="mother">
+			<node>
+				<dialog>
+					Only the murderer would know that.  I'm calling the police!
+				</dialog>
+				<option>
+					Is Evol Lady really your mother?
+				</option>
+			</node>
+			<event>
+				<action class="ActivateTopic">
+					<property name="topic" id="sketchy" />
+				</action>
+			</event>
+		</conversation>
+		<conversation topic="lady">
+			<node>
+				<dialog>
+					My own mother.  I should have known.
+				</dialog>
+				<option>
+					Your mother hired someone to murder your father.
+				</option>
+			</node>
+		</conversation>
+	</person>
+	<person name="Evol Lady">
+		<initialGreeting>What do you want?</initialGreeting>
+		<greeting>I can't be bothered by you right now.</greeting>
+		<introduction>Who am I? You don't know who I am? You can ask someone else.</introduction>
+		<event>
+			<action class="ActivateTopic">
+				<property name="topic" id="evol" />
+			</action>
+		</event>
+		<conversation topic="murder">
+			<node>
+				<dialog>
+					My husband was killed a few days ago.  Who are you to pry into such matters?
+				</dialog>
+				<option>
+					I hear there was a murder.
+				</option>
+			</node>
+		</conversation>
+		<conversation topic="sketchy">
+			<node>
+				<dialog>
+					I've never met him!
+				</dialog>
+				<option>
+					That guy, Sketchy, seems kinda... um... Sketchy huh?
+				</option>
+			</node>
+		</conversation>
+		<conversation topic="lady">
+			<node>
+				<dialog>
+					That buffoon! Why did I trust him? Ah well, maybe prison won't be so bad.  Still not as bad as being married to THAT MAN.
+				</dialog>
+				<option>
+					I know you hired Sketchy to murder your husband
+				</option>
+			</node>
+			<event>
+				<action class="IncreaseStat">
+					<!-- TODO -->
+					<property></property>
+				</action>
+			</event>
+		</conversation>
+	</person>
+	<person name="Sketchy Douche">
+		<initialGreeting>...</initialGreeting>
+		<greeting>You again.</greeting>
+		<introduction>None of your business</introduction>
+		<conversation topic="murder">
+			<node>
+				<dialog>
+					Why would I know anything about that? Why are you asking ME? Do I LOOK like I know anything?
+				</dialog>
+				<option>
+					Do you know anything about this murder people are talking about?
+				</option>
+			</node>
+		</conversation>
+		<conversation topic="evol">
+			<node>
+				<dialog>
+					Why don't you ask her daughter? Her name is Girl.
+				</dialog>
+				<option>
+					What is up with that Evol Lady woman?
+				</option>
+			</node>
+			<event>
+				<action class="ActivateTopic">
+					<property name="topic" id="mother" />
+				</action>
+			</event>
+		</conversation>
+		<conversation topic="sketchy">
+			<node>
+				<option>
+					Apparently only the murderer would know that Girl is Evol Lady's daughter...
+				</option>
+				<dialog>
+					...Crap I wasn't supposed to tell you that.  I'm not sure why Mrs. Lady hired ME exactly.  Or more importantly why I accepted.  Wow, I'm really bad at this...  I'm going to jail aren't I?
+				</dialog>
+			</node>
+			<event>
+				<action class="ActivateTopic">
+					<property name="topic" id="lady" />
+				</action>
+			</event>
+		</conversation>
+	</person>
+</town>

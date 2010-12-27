@@ -1,0 +1,24 @@
+<critters>
+    <critter name="Eyesore" urlPath="/images/critters/eyesore" herd="10">
+        <stats
+            str="1"
+            rng="1"
+            int="1"
+            frt="5"
+            cam="0"
+            spd="4"
+            crt="2"
+        />
+    </critter>
+    <critter name="Tiger guy" urlPath="/images/critters/tiger" herd="1">
+        <stats
+            str="7"
+            rng="1"
+            int="10"
+            frt="7"
+            cam="0"
+            spd="4"
+            crt="1"
+        />
+    </critter>
+</critters>

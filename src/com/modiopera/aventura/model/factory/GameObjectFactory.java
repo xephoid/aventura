@@ -10,8 +10,11 @@ import com.modiopera.aventura.model.GameObject;
 public class GameObjectFactory<GameObjectType extends GameObject> {
 	private Map<String, GameObjectType> objects = new HashMap<String, GameObjectType>();
 	
-	@SuppressWarnings("unchecked")
-    public GameObjectType getRandom() {
+    @SuppressWarnings("unchecked")
+	public GameObjectType getRandom() {
+    	if (this.objects.values().size() < 1) {
+    		return null;
+    	}
 		Object[] grabBag = this.objects.values().toArray();
 		int index = (int) (Math.random() * grabBag.length);
 		

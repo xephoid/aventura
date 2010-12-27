@@ -1,5 +1,8 @@
 package com.modiopera.aventura.model.dungeon;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Dungeon {
 	public static final Integer DUNGEON_NOWHERE_X = -1;
 	public static final Integer DUNGEON_NOWHERE_Y = -1;
@@ -7,6 +10,7 @@ public class Dungeon {
 	private Integer width;
 	private Integer height;
 	private DungeonTile[][] mapTiles;
+	private List<DungeonObject> objects = new ArrayList<DungeonObject>();
 	
 	private int startx;
 	private int starty;
@@ -65,6 +69,7 @@ public class Dungeon {
 		if (!isValidLocation(x, y)) {
 			return false;
 		}
+		this.objects.remove(obj);
 		return this.mapTiles[x][y].leave(obj);
 	}
 	
@@ -76,6 +81,9 @@ public class Dungeon {
 		if (!isValidLocation(x, y) || DungeonTileTypeEnum.WALL.equals(this.mapTiles[x][y].getType())) {
 			return false;
 		}
+		obj.setxPosition(x);
+		obj.setyPosition(y);
+		this.objects.add(obj);
 		return this.mapTiles[x][y].visit(obj);
 	}
 	
@@ -112,5 +120,33 @@ public class Dungeon {
 			return this.getTile(x, y).isBlocked();
 		}
 		return true;
+	}
+	
+	public boolean isBlocked(int x1, int y1, int x2, int y2) {
+		if (isValidLocation(x1, y1) && isValidLocation(x2, y2)) {
+			int tx = x1;
+			int ty = y1;
+			do {
+				if (this.isBlocked(tx, ty)) {
+					return true;
+				}
+				if (tx < x2) {
+					tx++;
+				} else if (tx > x2) {
+					tx--;
+				}
+				if (ty < y2) {
+					ty++;
+				} else if (ty > y2) {
+					ty--;
+				}
+			} while (tx != x2 || ty != y2);
+			return false;
+		}
+		return true;
+	}
+	
+	public List<DungeonObject> getObjects() {
+		return this.objects;
 	}
 }

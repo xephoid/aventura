@@ -14,6 +14,8 @@ public class Quest extends GameObject {
 	private Conversation explination;
 	private List<Conversation> information = new ArrayList<Conversation>();
 	private List<Conversation> solveds = new ArrayList<Conversation>();
+	private List<Item> items = new ArrayList<Item>();
+	private List<Critter> critters = new ArrayList<Critter>();
 	private Dialog intro;
 	
 	public boolean isCompleted() {
@@ -78,4 +80,20 @@ public class Quest extends GameObject {
     public void addParticipant(Person participant) {
         this.participants.add(participant);
     }
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setCritters(List<Critter> critters) {
+		this.critters = critters;
+	}
+
+	public List<Critter> getCritters() {
+		return critters;
+	}
 }

@@ -7,11 +7,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.modiopera.aventura.model.Critter;
+import com.modiopera.aventura.model.Item;
 import com.modiopera.aventura.model.Person;
 import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.Quest;
 import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Conversation;
+import com.modiopera.aventura.model.conversation.ConversationException;
+import com.modiopera.aventura.model.dungeon.Dungeon;
+import com.modiopera.aventura.model.dungeon.MazeGenerator;
 import com.modiopera.aventura.model.factory.FactoryFactory;
 import com.modiopera.aventura.parser.xml.XMLGameDataParser;
 import com.modiopera.aventura.parser.xml.XMLParserException;
@@ -27,6 +32,10 @@ public abstract class AbstractController {
 	
 	protected Map<String, Person> personMap;
 	protected Map<String, Conversation> conversationMap;
+	protected Map<String, Critter> critterMap;
+	protected Map<String, Item> itemMap;
+	
+	private Dungeon dungeon;
 
 	public void start() {
 		this.setup();
@@ -67,6 +76,8 @@ public abstract class AbstractController {
         }
 		this.personMap = new HashMap<String, Person>();
 		this.conversationMap = new HashMap<String, Conversation>();
+		this.critterMap = new HashMap<String, Critter>();
+		this.itemMap = new HashMap<String, Item>();
 		
 		Town town = FactoryFactory.getInstance().getTownFactory().getRandom();
 		if (town.isOpen()) {
@@ -83,6 +94,19 @@ public abstract class AbstractController {
 		    for (Conversation c : conversations) {
 		        people.get((int)(Math.random() * people.size())).addConversation(c);
 		    }
+		    
+		    town.setCritters(FactoryFactory.getInstance().getCritterFactory().getMultiple(5));
+		    town.getItems().addAll(FactoryFactory.getInstance().getItemFactory().getMultiple(2));
+		    Quest quest = FactoryFactory.getInstance().getQuestFactory()
+				.getRandom();
+		    this.assignQuest(quest, people);
+		    
+		    for (Item i: quest.getItems()) {
+		    	town.getItems().add(i);
+		    }
+		    for (Critter c: quest.getCritters()) {
+		    	town.getCritters().add(c);
+		    }
 		}
 		
 		Collections.shuffle(town.getTownsPeople());
@@ -91,16 +115,19 @@ public abstract class AbstractController {
 		
 		for (Person p : town.getTownsPeople()) {
             this.personMap.put(p.getId(), p);
-            for (Conversation c : p.getConversations()) {
-                this.conversationMap.put(c.getId(), c);
-            }
         }
+		for (Conversation c : Conversation.allConversations()) {
+			this.conversationMap.put(c.getId(), c);
+		}
 		
-		/*
-		Quest quest = FactoryFactory.getInstance().getQuestFactory()
-				.getRandom();
-		this.assignQuest(quest, people);
-		*/
+		for (Critter c : town.getCritters()) {
+			this.critterMap.put(c.getId(), c);
+		}
+		
+		for (Item i : town.getItems()) {
+			this.itemMap.put(i.getId(), i);
+		}
+		
 		this.currentTown = town;
 	}
 
@@ -110,25 +137,13 @@ public abstract class AbstractController {
 					"People list must have at least two people");
 		}
 		Collections.shuffle(people);
-		Iterator<Person> group = people.iterator();
-
-		this.conversationMap.put(quest.getExplination().getId(),
-				quest.getExplination());
-		group.next().addQuest(quest);
-/*
-		this.conversationMap.put(quest.getSolution().getId(),
-				quest.getSolution());
-		group.next().addConversation(quest.getSolution());
-*/
+		Person person = people.get(0);
+		
 		if (quest.getInformation() != null) {
 			for (Conversation c : quest.getInformation()) {
-				if (group.hasNext()) {
-					this.conversationMap.put(c.getId(), c);
-					group.next().addConversation(c);
-				}
+				person.addConversation(c);
 			}
 		}
-		Collections.shuffle(people);
 	}
 
 	public void setView(IGameView view) {
@@ -150,5 +165,33 @@ public abstract class AbstractController {
 		EventHandler.getInstance().setPlayerDataMap(playerData);
 	}
 	
+	public void initializeConversations() {
+		for (Conversation c : this.conversationMap.values()) {
+			try {
+				c.init();
+			} catch (ConversationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	
+	public Dungeon getDungeon() {
+		if (this.dungeon == null) {
+			MazeGenerator generator = new MazeGenerator();
+			this.dungeon = generator.generateDungeon(30, 30);
+			this.initDungeon(this.dungeon);
+		}
+		return this.dungeon;
+	}
+	
+	public Critter getCritter(String id) {
+		return this.critterMap.get(id);
+	}
+	
+	public Item getItem(String id) {
+		return this.itemMap.get(id);
+	}
+	
+	protected abstract void initDungeon(Dungeon dungeon); 
 }

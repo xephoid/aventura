@@ -13,8 +13,8 @@ import com.modiopera.aventura.model.dungeon.Dungeon;
 public class Town extends GameObject {
 	
 	private List<Person> townsPeople;
-	private List<Item> items;
-	private List<Critter> critters;
+	private List<Item> items = new ArrayList<Item>();
+	private List<Critter> critters = new ArrayList<Critter>();
 	private Dungeon dungeon;
 	private boolean open;
 	
