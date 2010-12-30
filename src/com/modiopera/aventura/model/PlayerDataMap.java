@@ -209,7 +209,7 @@ public class PlayerDataMap {
 	
 	public void removeItem(Item item) {
 		if (this.hasItem(item)) {
-			this.items.remove(item);
+			this.items.remove(item.getId());
 		} else {
 			// Throw exception?
 		}

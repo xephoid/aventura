@@ -7,6 +7,8 @@ public class DialogVector {
 	private DialogNode parent;
 	private DialogNode child;
 	private Requirement requirement;
+	private int useLimit = Integer.MAX_VALUE;
+	private int uses = 0;
 	
 	public Dialog getPlayerDialog() {
 		return playerDialog;
@@ -31,5 +33,17 @@ public class DialogVector {
 	}
 	public Requirement getRequirement() {
 		return requirement;
+	}
+	
+	public void setUseLimit(int limit) {
+	    this.useLimit = limit;
+	}
+	
+	public boolean overLimit() {
+	    return this.uses >= this.useLimit;
+	}
+	
+	public void use() {
+	    this.uses++;
 	}
 }

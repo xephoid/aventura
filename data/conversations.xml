@@ -88,18 +88,18 @@
         <exit>Farewell.</exit>
     </conversation>
     <conversation>
-        <dialog>I have a french press.</dialog>
+        <dialog>I have a sock puppet.</dialog>
         <node>
-            <player>Do you have a french press?</player>
+            <player>Do you have a sock puppet?</player>
             <dialog>Why, I do actually.</dialog>
             <node>
                 <player>Great! Can I have it?</player>
                 <dialog>No.</dialog>
             </node>
-            <node cam="7">
-            	<player>[Ninja: steal the french press]</player>
+            <node cam="7" limit="1">
+            	<player>[Ninja: steal the sock puppet]</player>
             	<dialog>...</dialog>
-            	<action item="frenchpress" />
+            	<action item="sockPuppet" />
             </node>
         </node>
         <exit>See you later.</exit>
