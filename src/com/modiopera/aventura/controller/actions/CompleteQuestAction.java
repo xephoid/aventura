@@ -9,7 +9,7 @@ public class CompleteQuestAction extends Action {
     @Override
     public boolean act() {
         if (!this.quest.isCompleted()) {
-            this.quest.completeQuest();
+            this.quest.completeQuest(this.playerDataMap);
             return true;
         }
         return false;

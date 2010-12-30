@@ -236,6 +236,7 @@ public class XMLGameDataParser {
             } else {
                 quest = new Quest();
             }
+			quest.setName(elem.getAttribute("name"));
              
 			quest.setRequestor(requestor);
 			// Explanation

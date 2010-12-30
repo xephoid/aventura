@@ -54,7 +54,7 @@ public class Quest extends GameObject {
         this.solveds = solveds;
     }
     
-    public void completeQuest() {
+    public void completeQuest(PlayerDataMap playerData) {
         this.completed = true;
         for (Conversation conv : this.solveds) {
             if (conv.getPerson() == null) {
@@ -62,6 +62,9 @@ public class Quest extends GameObject {
             } else {
                 conv.getPerson().addConversation(conv);
             }
+        }
+        for (Item item : this.items) {
+            playerData.removeItem(item);
         }
     }
 

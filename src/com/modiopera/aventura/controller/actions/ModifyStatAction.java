@@ -26,4 +26,9 @@ public class ModifyStatAction extends Action {
 	public void setAmount(Integer amount) {
 		this.value = amount;
 	}
+	
+	@Override
+	public String toString() {
+	    return "Increased stat " + stat.getDescription() + " by " + value;
+	}
 }

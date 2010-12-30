@@ -20,4 +20,9 @@ public class GiveItemToPlayerAction extends Action {
     public void setItem(Item item) {
         this.item = item;
     }
+    
+    @Override
+    public String toString() {
+        return "Reviced item: " + item.getName();
+    }
 }
