@@ -47,9 +47,9 @@ public class PlayerDataMap {
 				str = 10;
 				rng = 9;
 				ine = 2;
-				cam = 4;
+				cam = 2;
 				cha = 3;
-				frt = 2;
+				frt = 4;
 				spd = 4;
 				break;
 			case NINJA :
