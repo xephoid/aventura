@@ -158,8 +158,9 @@ public class PlayerDataMap {
 				int max = this.getValue(StatEnum.EXPERIENCE_TO_NEXT_LEVEL);
 				exp += amount;
 				
-				if (exp > max) {
+				if (exp >= max) {
 					this.levelUp();
+					// if exp > max then need to add the difference 
 					this.setValue(StatEnum.EXPERIENCE, max - exp);
 				} else {
 					this.setValue(key, exp);
@@ -200,7 +201,11 @@ public class PlayerDataMap {
 	}
 	
 	public void addItem(Item item) {
-		this.items.put(item.getId(), item);
+		if (item.isConsumable() && this.items.containsKey(item.getId())) {
+			// you can only have one of a non-consumable item
+		} else {
+			this.items.put(item.getId(), item);
+		}
 	}
 	
 	public boolean hasItem(Item item) {
@@ -210,8 +215,6 @@ public class PlayerDataMap {
 	public void removeItem(Item item) {
 		if (this.hasItem(item)) {
 			this.items.remove(item);
-		} else {
-			// Throw exception?
 		}
 	}
 

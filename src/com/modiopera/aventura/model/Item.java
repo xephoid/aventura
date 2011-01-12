@@ -1,8 +1,13 @@
 package com.modiopera.aventura.model;
 
+import com.modiopera.aventura.controller.EventEnum;
+import com.modiopera.aventura.controller.EventHandler;
+import com.modiopera.aventura.controller.actions.Action;
+
 public class Item extends GameObject {
 
     private String imgUrl;
+    private Action action;
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
@@ -11,4 +16,24 @@ public class Item extends GameObject {
     public String getImgUrl() {
         return imgUrl;
     }
+
+	public void setAction(Action action) {
+		this.action = action;
+	}
+
+	public Action getAction() {
+		return action;
+	}
+	
+	public boolean isConsumable() {
+		return this.action == null;
+	}
+	
+	public void consume(PlayerDataMap dataMap) {
+		if (this.isConsumable()) {
+			this.action.act();
+			dataMap.removeItem(this);
+			EventHandler.getInstance().createEvent(EventEnum.USE_ITEM, this);
+		}
+	}
 }
