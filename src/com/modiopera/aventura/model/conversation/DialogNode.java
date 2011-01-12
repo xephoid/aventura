@@ -43,7 +43,7 @@ public class DialogNode {
 		}
 		List<Dialog> result = new ArrayList<Dialog>();
 		for(DialogVector vector: this.vectors.values()) {
-			if (vector.getRequirement() == null || vector.getRequirement().met(player)) {
+			if (!vector.overLimit() && (vector.getRequirement() == null || vector.getRequirement().met(player))) {
 				result.add(vector.getPlayerDialog());
 			}
 		}
@@ -58,7 +58,8 @@ public class DialogNode {
 		if (this.isEnd() || !this.vectors.containsKey(id)) {
 			return null;
 		}
-		DialogVector vector = this.vectors.get(id); 
+		DialogVector vector = this.vectors.get(id);
+		vector.use();
 		return vector.getChild();
 	}
 	

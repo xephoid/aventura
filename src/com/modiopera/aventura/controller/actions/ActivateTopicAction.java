@@ -17,6 +17,6 @@ public class ActivateTopicAction extends Action {
 	
 	@Override
 	public String toString() {
-	    return "Topic" +topic+ " activated!";
+	    return "";
 	}
 }

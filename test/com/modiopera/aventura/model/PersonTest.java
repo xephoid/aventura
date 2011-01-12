@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.modiopera.aventura.model.conversation.Conversation;
 import com.modiopera.aventura.model.conversation.Dialog;
+import com.modiopera.aventura.model.enums.PlayerTypeEnum;
 
 public class PersonTest {
 
@@ -77,7 +78,7 @@ public class PersonTest {
 		quests.add(quest);
 		person.setQuests(quests);
 		Assert.assertEquals(quest, person.getAvailableQuest());
-		quest.completeQuest();
+		quest.completeQuest(new PlayerDataMap(PlayerTypeEnum.CUSTOM));
 		Assert.assertNull(person.getAvailableQuest());
 	}
 

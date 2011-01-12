@@ -7,6 +7,10 @@
             <greeting>Greetings.</greeting>
             <introduction>I am Jennifer. I like to think of myself as a coffee officionato.</introduction>
             <quest id="fpress" name="French pressing matters">
+                <item id="frenchPress" name="French Press">
+                    <display url="" />
+                    <description>For pressing coffee silly.</description>
+                </item>
                 <explination>
                     <conversation person="jenn">
                         <dialog>I really need a new french press.</dialog>
@@ -41,7 +45,7 @@
                                         <player>Why not get someone else to package the beans?</player>
                                         <dialog>My business is just starting out. I don’t have the money to hire another person.</dialog>
                                     </node>
-                                    <node cha="7">
+                                    <node cha="7" limit="1">
                                         <action quest="fpress"></action>
                                         <player>I’ll do it for you while you go get a french press, for free!</player>
                                         <dialog>Wow that would be great! I’ll be right back.</dialog>
@@ -96,7 +100,7 @@
             <conversation>
             	<dialog>NULL</dialog>
             	<exit>I need to go.</exit>
-            	<node item="frenchpress">
+            	<node item="frenchpress" limit="1">
             		<player>I have a french press for you.</player>
             		<dialog>Wow.  I really didn't think anyone would help me with that.  Thank you so much!</dialog>
             		<action quest="fpress" />
@@ -194,12 +198,6 @@
             <introduction>I am Jimtastic.  I like shoes!</introduction>
         </person>
     </people>
-    <items open="true">
-        <item id="frenchPress" name="French Press">
-            <display url="" />
-            <description>For pressing coffee silly.</description>
-        </item>
-    </items>
     <critters open="true">
     </critters>
 </town>

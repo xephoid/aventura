@@ -236,6 +236,7 @@ public class XMLGameDataParser {
             } else {
                 quest = new Quest();
             }
+			quest.setName(elem.getAttribute("name"));
              
 			quest.setRequestor(requestor);
 			// Explanation
@@ -346,6 +347,9 @@ public class XMLGameDataParser {
 	        
 	        DialogVector vector = parent.addNode(player, leaf);
 	        vector.setRequirement(req);
+	        if (elem.hasAttribute("limit")) {
+	            vector.setUseLimit(Integer.parseInt(elem.getAttribute("limit")));
+	        }
 	        if (elem.hasAttribute("id") && !dialogMap.containsKey(elem.getAttribute("id"))) {
 	            dialogMap.put(elem.getAttribute("id"), vector);
 	        }
