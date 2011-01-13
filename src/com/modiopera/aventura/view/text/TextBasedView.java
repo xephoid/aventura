@@ -10,7 +10,9 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.modiopera.aventura.controller.actions.Action;
+import com.modiopera.aventura.model.Item;
 import com.modiopera.aventura.model.Person;
+import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.Quest;
 import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Conversation;
@@ -18,9 +20,9 @@ import com.modiopera.aventura.model.conversation.ConversationException;
 import com.modiopera.aventura.model.conversation.ConversationFactory;
 import com.modiopera.aventura.model.conversation.Dialog;
 import com.modiopera.aventura.model.dungeon.Dungeon;
-import com.modiopera.aventura.view.GameView;
+import com.modiopera.aventura.view.IGameView;
 
-public class TextBasedView extends GameView {
+public class TextBasedView implements IGameView {
 	private static final Logger logger = Logger.getLogger(TextBasedView.class);
 	private static final String EXIT_KEY = "q";
 	private static final Integer EXIT_CODE = -1;
@@ -28,8 +30,14 @@ public class TextBasedView extends GameView {
 	private Map<Integer, Person> personMap;
 	private Map<Integer, Conversation> conversationMap;
 	
+	private Town currentTown;
+	private Person currentPerson;
+	private Conversation currentConversation;
+	private PlayerDataMap playerData;
+	
 	@Override
-	protected void showTown(Town town) {
+	public void showTown(Town town) {
+		this.currentTown = town;
 		do {
 			System.out.println(town.getName() + ":");
 			System.out.println(town.getDescrption());
@@ -41,12 +49,10 @@ public class TextBasedView extends GameView {
 				System.out.println("(" + option + ") " + person.getName());
 				option++;
 			}
-			this.controller.setCurrentPerson(this.getPersonChoice());
-			this.talkToPerson(this.controller.getCurrentPerson());
-		} while(this.controller.getCurrentPerson() != null);
+			this.showPerson(this.currentPerson);
+		} while(this.currentPerson != null);
 	}
 	
-	@Override
 	public Person getPersonChoice() {
 		Integer choice = this.getUserInput(this.personMap);
 		if (choice == EXIT_CODE) {
@@ -56,12 +62,12 @@ public class TextBasedView extends GameView {
 	}
 
 	@Override
-	protected void speak(Person person) {
+	public void showPerson(Person person) {
 		if (person == null) {
 			return;
 		}
+		this.currentPerson = person;
 		this.conversationMap = new HashMap<Integer, Conversation>();
-		this.controller.setCurrentPerson(person);
 		String again = "";
 		if (!person.isMetBefore()) {
 			System.out.println(person.getName() + ": " + person.getInitialGreeting().getText());
@@ -94,7 +100,7 @@ public class TextBasedView extends GameView {
 			for(Conversation bit : person.getConversations()) {
 				try {
 					bit.init();
-					for(Dialog dialog : bit.getOptions(this.controller.getPlayerData())) {
+					for(Dialog dialog : bit.getOptions(this.playerData)) {
 						System.out.println("(" + startIdx + ") " + dialog.getText());
 					}
 					this.conversationMap.put(startIdx++, bit);
@@ -107,7 +113,7 @@ public class TextBasedView extends GameView {
 			if (choice == EXIT_CODE) {
 				return;
 			}
-			this.startConversation(this.conversationMap.get(choice));
+			this.showConversation(this.conversationMap.get(choice));
 		} while (choice != EXIT_CODE);
 	}
 	
@@ -142,17 +148,17 @@ public class TextBasedView extends GameView {
 	}
 	
 	@Override
-	protected void converse(Conversation conversation) {
+	public void showConversation(Conversation conversation) {
 		if (conversation == null) {
-			this.speak(this.controller.getCurrentPerson());
+			this.showPerson(this.currentPerson);
 		}
+		this.currentConversation = conversation;
 		Map<Integer, Dialog> dialogMap = new HashMap<Integer, Dialog>();
 		Integer choice = null;
 		try {
 			do {
-				this.spokeDialog(conversation.getCurrentDialog());
-				System.out.println(this.controller.getCurrentPerson().getName() + ": " + conversation.getCurrentDialog().getText());
-				List<Dialog> options = conversation.getOptions(this.controller.getPlayerData());
+				System.out.println(this.currentPerson.getName() + ": " + conversation.getCurrentDialog().getText());
+				List<Dialog> options = conversation.getOptions(this.playerData);
 				if (options != null && !options.isEmpty()) {
 					int idx = 1;
 					for(Dialog d : options) {
@@ -172,13 +178,51 @@ public class TextBasedView extends GameView {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	public void startDungeon(Dungeon dungeon) {
-		// TODO
-	}
 
     @Override
     public void eventOccured(Action action) {
         System.out.println("Event: " + action);
     }
+
+	@Override
+	public void showDungeon(Dungeon dungeon) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showDialog(Dialog dailog) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDialogOptions(List<Dialog> dialogs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void questAccepted(Quest quest) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void questCompleted(Quest quest) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void aquireItem(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void useItem(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
 }

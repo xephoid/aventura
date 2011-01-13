@@ -78,7 +78,7 @@ public class PersonTest {
 		quests.add(quest);
 		person.setQuests(quests);
 		Assert.assertEquals(quest, person.getAvailableQuest());
-		quest.completeQuest(new PlayerDataMap(PlayerTypeEnum.CUSTOM));
+		//quest.completeQuest(new PlayerDataMap(PlayerTypeEnum.CUSTOM));
 		Assert.assertNull(person.getAvailableQuest());
 	}
 

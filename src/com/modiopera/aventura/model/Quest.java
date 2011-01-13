@@ -22,6 +22,10 @@ public class Quest extends GameObject {
 		return completed;
 	}
 	
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+	
 	public Conversation getExplination() {
 		return explination;
 	}
@@ -54,20 +58,6 @@ public class Quest extends GameObject {
         this.solveds = solveds;
     }
     
-    public void completeQuest(PlayerDataMap playerData) {
-        this.completed = true;
-        for (Conversation conv : this.solveds) {
-            if (conv.getPerson() == null) {
-                this.requestor.addConversation(conv);
-            } else {
-                conv.getPerson().addConversation(conv);
-            }
-        }
-        for (Item item : this.items) {
-            playerData.removeItem(item);
-        }
-    }
-
     public void setRequestor(Person requestor) {
         this.requestor = requestor;
     }

@@ -6,7 +6,6 @@ import java.util.List;
 import com.modiopera.aventura.model.Person;
 import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Dialog;
-import com.modiopera.aventura.parser.xml.XMLGameParser;
 
 public class Aventura {
 
@@ -24,7 +23,6 @@ public class Aventura {
 	 * TODO:
 	 */
 	public void start() {
-		XMLGameParser.parseAndRun("towns/test.xml");
 		
 	}
 	

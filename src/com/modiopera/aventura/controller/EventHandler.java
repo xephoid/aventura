@@ -15,8 +15,6 @@ import com.modiopera.aventura.view.IGameView;
 
 public class EventHandler {
 
-	private static EventHandler _instance;
-	
 	private Integer eventCount = 0;
 	private Set<Event> eventSet = new HashSet<Event>();
 	private Map<EventEnum, Map<GameObject, Action>> eventToActionMap = new HashMap<EventEnum, Map<GameObject,Action>>();
@@ -24,17 +22,10 @@ public class EventHandler {
 	private IGameView view;
 	private PlayerDataMap playerDataMap;
 	
-	private EventHandler() {
+	public EventHandler() {
 		for(EventEnum event : EnumSet.allOf(EventEnum.class)) {
 			this.eventToActionMap.put(event, new HashMap<GameObject, Action>());
 		}
-	}
-	
-	public static EventHandler getInstance() {
-		if (_instance == null) {
-			_instance = new EventHandler();
-		}
-		return _instance;
 	}
 	
 	public Event createEvent(EventEnum event, GameObject object) {

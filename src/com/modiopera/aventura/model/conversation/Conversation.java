@@ -1,9 +1,6 @@
 package com.modiopera.aventura.model.conversation;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.Person;
@@ -12,8 +9,6 @@ import com.modiopera.aventura.model.Topic;
 
 public class Conversation extends GameObject {
 
-	private static final List<Conversation> allConversations = new ArrayList<Conversation>();
-	
 	private boolean initialized = false;
 	private DialogNode root;
 	private DialogNode current;
@@ -23,7 +18,6 @@ public class Conversation extends GameObject {
 	
 	public Conversation() {
 		super();
-		allConversations.add(this);
 	}
 	
 	public void init() throws ConversationException {
@@ -94,9 +88,5 @@ public class Conversation extends GameObject {
 
     public Person getPerson() {
         return person;
-    }
-    
-    public static List<Conversation> allConversations() {
-    	return allConversations;
     }
 }

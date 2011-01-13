@@ -28,12 +28,4 @@ public class Item extends GameObject {
 	public boolean isConsumable() {
 		return this.action == null;
 	}
-	
-	public void consume(PlayerDataMap dataMap) {
-		if (this.isConsumable()) {
-			this.action.act();
-			dataMap.removeItem(this);
-			EventHandler.getInstance().createEvent(EventEnum.USE_ITEM, this);
-		}
-	}
 }

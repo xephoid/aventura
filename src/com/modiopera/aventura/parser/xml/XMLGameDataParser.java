@@ -40,65 +40,73 @@ import com.modiopera.aventura.model.enums.StatEnum;
 import com.modiopera.aventura.model.factory.FactoryFactory;
 
 public class XMLGameDataParser {
+	
+	private static final XMLGameDataParser _instance = new XMLGameDataParser();
     
-    private static Map<String, DialogVector> dialogMap = new HashMap<String, DialogVector>();
-    private static Map<String, Topic> topicMap = new HashMap<String, Topic>();
-    private static Map<String, Person> personMap = new HashMap<String, Person>();
-    private static Map<String, Quest> questMap = new HashMap<String, Quest>();
-    private static Map<String, Town> townMap = new HashMap<String, Town>();
-    private static Map<String, Item> itemMap = new HashMap<String, Item>();
-    private static Map<String, Critter> critterMap = new HashMap<String, Critter>();
+    private Map<String, DialogVector> dialogMap = new HashMap<String, DialogVector>();
+    private Map<String, Topic> topicMap = new HashMap<String, Topic>();
+    private Map<String, Person> personMap = new HashMap<String, Person>();
+    private Map<String, Quest> questMap = new HashMap<String, Quest>();
+    private Map<String, Town> townMap = new HashMap<String, Town>();
+    private Map<String, Item> itemMap = new HashMap<String, Item>();
+    private Map<String, Critter> critterMap = new HashMap<String, Critter>();
+    private Map<String, Conversation> conversationMap = new HashMap<String, Conversation>();
+    private EventHandler eventHandler;
+    
+    private XMLGameDataParser() {}
     
     public static void main(String[] argv) {
         try {
-            loadData();
+            loadData(new EventHandler());
         } catch (XMLParserException e) {
             e.printStackTrace();
         }
     }
-
-	public static void loadData() throws XMLParserException {
-	    
+    
+	public static XMLGameDataParser loadData(EventHandler handler) throws XMLParserException {
+	    _instance.eventHandler = handler;
 	    File townDir = new File("data/towns");
 	    
 	    for (File file : townDir.listFiles()) {
 	        if (file.isFile() && file.toString().endsWith(".xml")) {
-	            Document doc = getDocument(file);
-	            List<Town> singleTownList = parseTownData(doc.getElementsByTagName(XMLParserConstants.PARSER_TAG_TOWN));
-	            townMap.put(singleTownList.get(0).getId(), singleTownList.get(0));
+	            Document doc = _instance.getDocument(file);
+	            List<Town> singleTownList = _instance.parseTownData(doc.getElementsByTagName(XMLParserConstants.PARSER_TAG_TOWN));
+	            _instance.townMap.put(singleTownList.get(0).getId(), singleTownList.get(0));
 	            System.out.println("Loading town " + file + "...");
 	        }
 	    }
 	    
 	    // Random Towns
-	    Document townDoc = getDocument(new File("data/towns.xml"));
-	    parseTownData(townDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_TOWN));
+	    Document townDoc = _instance.getDocument(new File("data/towns.xml"));
+	    _instance.parseTownData(townDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_TOWN));
 		
 	    // Wandering People
-	    Document personDoc = getDocument(new File("data/people.xml"));
-	    parsePersonData(personDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_PERSON), false);
+	    Document personDoc = _instance.getDocument(new File("data/people.xml"));
+	    _instance.parsePersonData(personDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_PERSON), false);
 		
 	    // Random items
-        Document itemDoc = getDocument(new File("data/items.xml"));
-        parseItems(itemDoc.getElementsByTagName("item"));
+        Document itemDoc = _instance.getDocument(new File("data/items.xml"));
+        _instance.parseItems(itemDoc.getElementsByTagName("item"));
         
         // Random critters
-        Document critterDoc = getDocument(new File("data/critters.xml"));
-        parseCritters(critterDoc.getElementsByTagName("critter"));
+        Document critterDoc = _instance.getDocument(new File("data/critters.xml"));
+        _instance.parseCritters(critterDoc.getElementsByTagName("critter"));
 	    
 	    // Random quests
-	    Document questDoc = getDocument(new File("data/quests.xml"));
-	    parseQuestData(null, questDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_QUEST));
+	    Document questDoc = _instance.getDocument(new File("data/quests.xml"));
+	    _instance.parseQuestData(null, questDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_QUEST));
 	    
 	    // Random conversations
-	    Document convDoc = getDocument(new File("data/conversations.xml"));
+	    Document convDoc = _instance.getDocument(new File("data/conversations.xml"));
 	    NodeList convNodes = convDoc.getElementsByTagName(XMLParserConstants.PARSER_TAG_CONVERSATION);
 	    for (int i = 0; i < convNodes.getLength(); i++) {
-	        FactoryFactory.getInstance().getConversationFactory().add(parseConversation((Element) convNodes.item(i)));
+	        FactoryFactory.getInstance().getConversationFactory().add(_instance.parseConversation((Element) convNodes.item(i)));
 	    }
+	    
+	    return _instance;
 	}
 	
-	public static Document getDocument(File file) {
+	private Document getDocument(File file) {
 		Document xml = null;
 		try {
 			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -119,7 +127,7 @@ public class XMLGameDataParser {
         return xml;
 	}
 	
-	private static List<Town> parseTownData(NodeList towns) throws XMLParserException {
+	private List<Town> parseTownData(NodeList towns) throws XMLParserException {
 	    List<Town> townList = new ArrayList<Town>();
 		if (towns != null) {
 			for (int i = 0; i < towns.getLength(); i++) {
@@ -154,7 +162,7 @@ public class XMLGameDataParser {
 		return townList;
 	}
 	
-	private static List<Person> parsePersonData(NodeList people, boolean inTown) throws XMLParserException {
+	private List<Person> parsePersonData(NodeList people, boolean inTown) throws XMLParserException {
 	    List<Person> result = new ArrayList<Person>();
 		if (people == null) {
 			return result;
@@ -219,7 +227,7 @@ public class XMLGameDataParser {
 		return result;
 	}
 	
-	private static List<Quest> parseQuestData(Person requestor, NodeList questData) throws XMLParserException {
+	private List<Quest> parseQuestData(Person requestor, NodeList questData) throws XMLParserException {
 	    List<Quest> result = new ArrayList<Quest>();
 		if (questData == null) {
 			return result;
@@ -267,12 +275,12 @@ public class XMLGameDataParser {
 			    FactoryFactory.getInstance().getQuestFactory().add(quest);
 			}
 			result.add(quest);
-			questMap.put(quest.getId(), quest);
+			_instance.questMap.put(quest.getId(), quest);
 		}
 		return result;
 	}
 	
-	protected static Conversation parseConversation(Element xml) throws XMLParserException {
+	protected Conversation parseConversation(Element xml) throws XMLParserException {
 	    dialogMap.clear();
 		Conversation conv = new Conversation();
 		
@@ -298,11 +306,12 @@ public class XMLGameDataParser {
 					extractFirstNode(XMLParserConstants.PARSER_TAG_ACTION, xml),
 					conv);
 		}
+		conversationMap.put(conv.getId(), conv);
 		
 		return conv;
 	}
 	
-	protected static void parseSubNodes(Node xml, DialogNode parent) throws XMLParserException {
+	protected void parseSubNodes(Node xml, DialogNode parent) throws XMLParserException {
 		Element elem = (Element) xml;
 		
 		DialogNode leaf = new DialogNode();
@@ -361,7 +370,7 @@ public class XMLGameDataParser {
 		}
 	}
 	
-	private static List<Item> parseItems(NodeList nodes) {
+	private List<Item> parseItems(NodeList nodes) {
 	    List<Item> results = new ArrayList<Item>();
 	    if (nodes == null) {
 	        return results;
@@ -384,7 +393,7 @@ public class XMLGameDataParser {
 	    return results;
 	}
 	
-	private static List<Critter> parseCritters(NodeList nodes) {
+	private List<Critter> parseCritters(NodeList nodes) {
 	    List<Critter> results = new ArrayList<Critter>();
 	    if (nodes == null) {
 	        return results;
@@ -415,7 +424,7 @@ public class XMLGameDataParser {
 	    return results;
 	}
 	
-	private static List<Node> getChildrenWithTag(String tag, Node node) {
+	private List<Node> getChildrenWithTag(String tag, Node node) {
 	    List<Node> results = new ArrayList<Node>();
 	    NodeList children = node.getChildNodes();
 	    for(int i = 0; i < children.getLength(); i++) {
@@ -427,7 +436,7 @@ public class XMLGameDataParser {
 	    return results;
 	}
 	
-	private static String extractTextFromNode(String childName,  Node xml) {
+	private String extractTextFromNode(String childName,  Node xml) {
 		NodeList nodes = xml.getChildNodes();
 		
 		for (int i=0 ; i < nodes.getLength() ; i++) {
@@ -439,7 +448,7 @@ public class XMLGameDataParser {
 		return null;
 	}
 	
-	private static Node extractFirstNode(String name, Node xml) {
+	private Node extractFirstNode(String name, Node xml) {
 		NodeList nodes = xml.getChildNodes();
 		
 		for (int i=0 ; i < nodes.getLength() ; i++) {
@@ -451,29 +460,29 @@ public class XMLGameDataParser {
 		return null;
 	}
 	
-	private static void parseAction(EventEnum eventType, Node xml, GameObject actionObject) {
+	private void parseAction(EventEnum eventType, Node xml, GameObject actionObject) {
 		if (xml != null) {
 			Element elem = (Element) xml;
 			if (elem.hasAttribute(XMLParserConstants.PARSER_ATTRIBUTE_TOPIC)) {
 				Topic topic = getTopic(elem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_TOPIC));
 				ActivateTopicAction action = new ActivateTopicAction();
 				action.setTopic(topic);
-				EventHandler.getInstance().mapEventToAction(eventType, actionObject, action);
+				this.eventHandler.mapEventToAction(eventType, actionObject, action);
 			} else if (elem.hasAttribute("quest")) {
 			    Quest quest = getQuest(elem.getAttribute("quest"));
 			    CompleteQuestAction action = new CompleteQuestAction();
 			    action.setQuest(quest);
-			    EventHandler.getInstance().mapEventToAction(eventType, actionObject, action);
+			    this.eventHandler.mapEventToAction(eventType, actionObject, action);
 			} else if (elem.hasAttribute("item")) {
 			    Item item = getItem(elem.getAttribute("item"));
 			    GiveItemToPlayerAction action = new GiveItemToPlayerAction();
 			    action.setItem(item);
-			    EventHandler.getInstance().mapEventToAction(eventType, actionObject, action);
+			    this.eventHandler.mapEventToAction(eventType, actionObject, action);
 			}
 		}
 	}
 	
-	private static Critter getCritter(String id) {
+	private Critter getCritter(String id) {
 	    if (!critterMap.containsKey(id)) {
 	        Critter critter = new Critter();
 	        critter.setId(id);
@@ -482,7 +491,7 @@ public class XMLGameDataParser {
 	    return critterMap.get(id);
 	}
 	
-	private static Item getItem(String id) {
+	private Item getItem(String id) {
 	    if (!itemMap.containsKey(id)) {
 	        Item item = new Item();
 	        item.setId(id);
@@ -491,7 +500,7 @@ public class XMLGameDataParser {
 	    return itemMap.get(id);
 	}
 	
-	private static Quest getQuest(String id) {
+	private Quest getQuest(String id) {
 	    if (!questMap.containsKey(id)) {
 	        Quest quest = new Quest();
 	        quest.setId(id);
@@ -500,7 +509,7 @@ public class XMLGameDataParser {
 	    return questMap.get(id);
 	}
 	
-	private static Person getPerson(String id) {
+	private Person getPerson(String id) {
 	    if (!personMap.containsKey(id)) {
 	        Person person = new Person(id);
 	        personMap.put(id, person);
@@ -508,12 +517,40 @@ public class XMLGameDataParser {
 	    return personMap.get(id);
 	}
 	
-	private static Topic getTopic(String id) {
+	private Topic getTopic(String id) {
 		if (!topicMap.containsKey(id)) {
 		    Topic topic = new Topic();
 	        topic.setId(id);
 	        topicMap.put(id, topic);
 		}
 		return topicMap.get(id);
+	}
+
+	public Map<String, Topic> getTopicMap() {
+		return topicMap;
+	}
+
+	public Map<String, Person> getPersonMap() {
+		return personMap;
+	}
+
+	public Map<String, Quest> getQuestMap() {
+		return questMap;
+	}
+
+	public Map<String, Town> getTownMap() {
+		return townMap;
+	}
+
+	public Map<String, Item> getItemMap() {
+		return itemMap;
+	}
+
+	public Map<String, Critter> getCritterMap() {
+		return critterMap;
+	}
+	
+	public Map<String, Conversation> getConversationMap() {
+		return conversationMap;
 	}
 }

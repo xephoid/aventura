@@ -3,7 +3,6 @@ package com.modiopera.aventura.controller;
 import java.security.InvalidParameterException;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -18,11 +17,9 @@ import com.modiopera.aventura.model.conversation.ConversationException;
 import com.modiopera.aventura.model.dungeon.Dungeon;
 import com.modiopera.aventura.model.dungeon.MazeGenerator;
 import com.modiopera.aventura.model.factory.FactoryFactory;
-import com.modiopera.aventura.parser.xml.XMLGameDataParser;
-import com.modiopera.aventura.parser.xml.XMLParserException;
 import com.modiopera.aventura.view.IGameView;
 
-public abstract class AbstractController {
+public abstract class GameController {
 
 	protected IGameView view;
 	protected PlayerDataMap playerData;
@@ -39,7 +36,7 @@ public abstract class AbstractController {
 
 	public void start() {
 		this.setup();
-		this.view.enterTown(this.currentTown);
+		//this.view.enterTown(this.currentTown);
 	}
 
 	public Town getTown() {
@@ -67,6 +64,7 @@ public abstract class AbstractController {
 	}
 
 	protected void setup() {
+		/*
 		try {
             XMLGameDataParser.loadData();
         } catch (XMLParserException e) {
@@ -74,6 +72,7 @@ public abstract class AbstractController {
             e.printStackTrace();
             return;
         }
+        */
 		this.personMap = new HashMap<String, Person>();
 		this.conversationMap = new HashMap<String, Conversation>();
 		this.critterMap = new HashMap<String, Critter>();
@@ -116,9 +115,9 @@ public abstract class AbstractController {
 		for (Person p : town.getTownsPeople()) {
             this.personMap.put(p.getId(), p);
         }
-		for (Conversation c : Conversation.allConversations()) {
+		/**for (Conversation c : Conversation.allConversations()) {
 			this.conversationMap.put(c.getId(), c);
-		}
+		}*/
 		
 		for (Critter c : town.getCritters()) {
 			this.critterMap.put(c.getId(), c);
@@ -149,8 +148,8 @@ public abstract class AbstractController {
 
 	public void setView(IGameView view) {
 		this.view = view;
-		this.view.setController(this);
-		EventHandler.getInstance().setView(view);
+		//this.view.setController(this);
+		//EventHandler.getInstance().setView(view);
 	}
 
 	public IGameView getView() {
@@ -163,7 +162,7 @@ public abstract class AbstractController {
 
 	public void setPlayerData(PlayerDataMap playerData) {
 		this.playerData = playerData;
-		EventHandler.getInstance().setPlayerDataMap(playerData);
+		//EventHandler.getInstance().setPlayerDataMap(playerData);
 	}
 	
 	public void initializeConversations() {
