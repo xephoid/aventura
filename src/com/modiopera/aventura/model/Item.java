@@ -1,7 +1,5 @@
 package com.modiopera.aventura.model;
 
-import com.modiopera.aventura.controller.EventEnum;
-import com.modiopera.aventura.controller.EventHandler;
 import com.modiopera.aventura.controller.actions.Action;
 
 public class Item extends GameObject {

@@ -1,5 +1,7 @@
 package com.modiopera.aventura.controller;
 
+import com.modiopera.aventura.controller.event.EventEnum;
+import com.modiopera.aventura.controller.event.EventHandler;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.view.IGameView;

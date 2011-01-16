@@ -3,6 +3,9 @@ package com.modiopera.aventura.controller;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.modiopera.aventura.controller.event.EventEnum;
+import com.modiopera.aventura.controller.event.EventHandler;
+import com.modiopera.aventura.controller.event.IEventListener;
 import com.modiopera.aventura.model.Critter;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.Item;

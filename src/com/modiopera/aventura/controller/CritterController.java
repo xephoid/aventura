@@ -2,6 +2,7 @@ package com.modiopera.aventura.controller;
 
 import java.util.Map;
 
+import com.modiopera.aventura.controller.event.EventEnum;
 import com.modiopera.aventura.model.Critter;
 import com.modiopera.aventura.model.GameObject;
 

@@ -3,7 +3,6 @@ package com.modiopera.aventura.controller;
 import com.modiopera.aventura.model.PlayerDataMap;
 import com.modiopera.aventura.model.dungeon.Dungeon;
 import com.modiopera.aventura.model.enums.PlayerTypeEnum;
-import com.modiopera.aventura.view.text.TextBasedView;
 
 public class MainController extends GameController {
 	public static void main(String[] args) {

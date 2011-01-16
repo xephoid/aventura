@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.modiopera.aventura.controller.event.EventEnum;
+import com.modiopera.aventura.controller.event.EventHandler;
+import com.modiopera.aventura.controller.event.IEventListener;
 import com.modiopera.aventura.model.Critter;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.Item;

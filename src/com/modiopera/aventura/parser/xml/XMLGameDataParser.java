@@ -17,11 +17,11 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.modiopera.aventura.controller.EventEnum;
-import com.modiopera.aventura.controller.EventHandler;
 import com.modiopera.aventura.controller.actions.ActivateTopicAction;
 import com.modiopera.aventura.controller.actions.CompleteQuestAction;
 import com.modiopera.aventura.controller.actions.GiveItemToPlayerAction;
+import com.modiopera.aventura.controller.event.EventEnum;
+import com.modiopera.aventura.controller.event.EventHandler;
 import com.modiopera.aventura.model.Critter;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.Item;

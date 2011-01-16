@@ -1,4 +1,4 @@
-package com.modiopera.aventura.controller;
+package com.modiopera.aventura.controller.event;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -19,8 +19,8 @@ public class EventHandler {
 	private Set<Event> eventSet = new HashSet<Event>();
 	private Map<EventEnum, Map<GameObject, Action>> eventToActionMap = new HashMap<EventEnum, Map<GameObject,Action>>();
 	private List<Action> actions = new ArrayList<Action>();
-	private IGameView view;
 	private PlayerDataMap playerDataMap;
+	private Map<Class<? extends GameObject>, List<IEventListener<? extends GameObject>>> listeners = new HashMap<Class<? extends GameObject>, List<IEventListener<? extends GameObject>>>();
 	
 	public EventHandler() {
 		for(EventEnum event : EnumSet.allOf(EventEnum.class)) {
@@ -37,7 +37,13 @@ public class EventHandler {
 		Action action = this.getAction(e);
 		if (action != null) {
 			action.act();
-			this.view.eventOccured(action);
+		}
+		
+		List<IEventListener<? extends GameObject>> list = this.listeners.get(object.getClass());
+		if (list != null) {
+			for (IEventListener<? extends GameObject> listener : list) {
+				listener.handleEvent(event, object);
+			}
 		}
 		
 		return e;
@@ -59,10 +65,6 @@ public class EventHandler {
 		return eventCount;
 	}
 	
-	public void setView(IGameView view) {
-	    this.view = view;
-	}
-	
 	protected void setEventSet(Set<Event> eventSet) {
 		this.eventSet = eventSet;
 	}
@@ -72,5 +74,13 @@ public class EventHandler {
 	        action.setPlayerData(dataMap);
 	    }
 	    this.playerDataMap = dataMap;
+	}
+	
+	public void registerListener(IEventListener<? extends GameObject> listener) {
+		List<IEventListener<? extends GameObject>> list = this.listeners.get(listener.getChildType());
+		if (list == null) {
+			list = new ArrayList<IEventListener<? extends GameObject>>();
+		}
+		list.add(listener);
 	}
 }

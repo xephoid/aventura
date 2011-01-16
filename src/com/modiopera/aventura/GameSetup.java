@@ -9,12 +9,12 @@ import java.util.Map;
 
 import com.modiopera.aventura.controller.BaseController;
 import com.modiopera.aventura.controller.ConversationsController;
-import com.modiopera.aventura.controller.EventHandler;
 import com.modiopera.aventura.controller.ItemController;
 import com.modiopera.aventura.controller.PeopleController;
 import com.modiopera.aventura.controller.PlayerController;
 import com.modiopera.aventura.controller.QuestController;
 import com.modiopera.aventura.controller.TownsController;
+import com.modiopera.aventura.controller.event.EventHandler;
 import com.modiopera.aventura.model.Critter;
 import com.modiopera.aventura.model.Item;
 import com.modiopera.aventura.model.Person;

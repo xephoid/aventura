@@ -1,4 +1,4 @@
-package com.modiopera.aventura.controller;
+package com.modiopera.aventura.controller.event;
 
 import com.modiopera.aventura.model.GameObject;
 

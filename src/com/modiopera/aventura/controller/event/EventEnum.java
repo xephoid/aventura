@@ -1,4 +1,4 @@
-package com.modiopera.aventura.controller;
+package com.modiopera.aventura.controller.event;
 
 public enum EventEnum {
 	ENTER_TOWN,
@@ -6,8 +6,7 @@ public enum EventEnum {
 	INITIATE_CONVERSATION,
 	SPEAK_DIALOG,
 	AQUIRE_ITEM,
-	FIGHT_MONSTER,
-	DEFEAT_MONSTER,
+	KILL_CRITTER,
 	ACCEPT_QUEST,
 	COMPLETE_QUEST,
 	USE_ITEM
