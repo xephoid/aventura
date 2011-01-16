@@ -1,11 +1,7 @@
 package com.modiopera.aventura;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.modiopera.aventura.controller.BaseController;
 import com.modiopera.aventura.controller.ConversationsController;
@@ -15,12 +11,7 @@ import com.modiopera.aventura.controller.PlayerController;
 import com.modiopera.aventura.controller.QuestController;
 import com.modiopera.aventura.controller.TownsController;
 import com.modiopera.aventura.controller.event.EventHandler;
-import com.modiopera.aventura.model.Critter;
-import com.modiopera.aventura.model.Item;
-import com.modiopera.aventura.model.Person;
 import com.modiopera.aventura.model.PlayerDataMap;
-import com.modiopera.aventura.model.Quest;
-import com.modiopera.aventura.model.conversation.Conversation;
 import com.modiopera.aventura.parser.xml.XMLGameDataParser;
 import com.modiopera.aventura.parser.xml.XMLParserException;
 import com.modiopera.aventura.view.IGameView;
