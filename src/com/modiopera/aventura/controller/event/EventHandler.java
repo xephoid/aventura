@@ -11,7 +11,6 @@ import java.util.Set;
 import com.modiopera.aventura.controller.actions.Action;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.PlayerDataMap;
-import com.modiopera.aventura.view.IGameView;
 
 public class EventHandler {
 
