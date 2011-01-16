@@ -12,6 +12,7 @@ import com.modiopera.aventura.model.Person;
 import com.modiopera.aventura.model.Quest;
 import com.modiopera.aventura.model.Town;
 import com.modiopera.aventura.model.conversation.Conversation;
+import com.modiopera.aventura.model.dungeon.MazeGenerator;
 import com.modiopera.aventura.model.factory.FactoryFactory;
 
 /**
@@ -25,6 +26,22 @@ public class TownsController extends BaseController {
 	private Map<String, Town> townMap;
 	
 	private Town currentTown;
+	
+	@Override
+	public void setEventHandler(EventHandler eh) {
+		eh.registerListener(new IEventListener<Item>() {
+			@Override
+			public void handleEvent(EventEnum eventType, GameObject obj) {
+				if (EventEnum.AQUIRE_ITEM.equals(eventType)) {
+					removeItemFromTown((Item) obj);
+				}
+			}
+			@Override
+			public Class<Item> getChildType() {
+				return Item.class;
+			}
+		});
+	}
 	
 	@Override
 	protected GameObject getCurrentObject() {
@@ -100,8 +117,21 @@ public class TownsController extends BaseController {
 		this.view.showTown(town);
 	}
 	
+	public void generateDungeon(int width, int height) {
+		MazeGenerator generator = new MazeGenerator();
+		if (this.currentTown != null) {
+			this.currentTown.setDungeon(generator.generateDungeon(width, height));
+		}
+	}
+	
 	@Override
 	public Class<? extends GameObject> getChildType() {
 		return Town.class;
+	}
+	
+	public void removeItemFromTown(Item item) {
+		if (this.currentTown != null) {
+			this.currentTown.getItems().remove(item);
+		}
 	}
 }
