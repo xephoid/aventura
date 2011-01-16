@@ -32,6 +32,7 @@ public class TownsController extends BaseController {
 	
 	@Override
 	public void setEventHandler(EventHandler eh) {
+		super.setEventHandler(eh);
 		eh.registerListener(new IEventListener<Item>() {
 			@Override
 			public void handleEvent(EventEnum eventType, GameObject obj) {

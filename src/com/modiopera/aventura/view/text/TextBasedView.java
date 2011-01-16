@@ -49,7 +49,7 @@ public class TextBasedView implements IGameView {
 				System.out.println("(" + option + ") " + person.getName());
 				option++;
 			}
-			this.showPerson(this.currentPerson);
+			this.showPerson(this.getPersonChoice());
 		} while(this.currentPerson != null);
 	}
 	

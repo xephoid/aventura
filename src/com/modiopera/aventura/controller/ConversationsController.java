@@ -30,8 +30,8 @@ public class ConversationsController extends BaseController {
 		try {
 			conversation.init();
 			view.setDialogOptions(conversation.getOptions(playerData));
-			fireEvent(EventEnum.INITIATE_CONVERSATION);
 			this.currentConversation = conversation;
+			fireEvent(EventEnum.INITIATE_CONVERSATION);
 		} catch (ConversationException e) {
 			e.printStackTrace();
 		}
