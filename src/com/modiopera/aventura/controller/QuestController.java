@@ -79,7 +79,7 @@ public class QuestController extends BaseController {
 		for (Entry<String, Quest> entry : this.questMap.entrySet()) {
 			Quest quest = entry.getValue();
 			if (quest.getCritters().contains(critter)) {
-				
+				// TODO
 			}
 		}
 	}

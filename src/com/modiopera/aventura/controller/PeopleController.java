@@ -2,6 +2,7 @@ package com.modiopera.aventura.controller;
 
 import java.util.Map;
 
+import com.modiopera.aventura.controller.event.EventEnum;
 import com.modiopera.aventura.model.GameObject;
 import com.modiopera.aventura.model.Person;
 
@@ -21,6 +22,13 @@ public class PeopleController extends BaseController {
 	
 	public Person getPerson(String id) {
 		return this.personMap.get(id);
+	}
+	
+	public void speakToPerson(Person person) {
+		this.currentPerson = person;
+		fireEvent(EventEnum.SPEAK_TO_PERSON);
+		view.showPerson(person);
+		person.setMetBefore(true);
 	}
 
 	@Override

@@ -60,6 +60,10 @@ public class TownsController extends BaseController {
 		return this.townMap.get(id);
 	}
 	
+	public Town getCurrentTown() {
+		return this.currentTown;
+	}
+	
 	public Town getRandomTown() {
 		Town town = FactoryFactory.getInstance().getTownFactory().getRandom();
 		if (town.isOpen()) {
@@ -125,6 +129,15 @@ public class TownsController extends BaseController {
 		MazeGenerator generator = new MazeGenerator();
 		if (this.currentTown != null) {
 			this.currentTown.setDungeon(generator.generateDungeon(width, height));
+		}
+	}
+	
+	public void enterDungeon() {
+		if (currentTown != null) {
+			if (currentTown.getDungeon() == null) {
+				generateDungeon(30, 30);
+			}
+			view.showDungeon(currentTown.getDungeon());
 		}
 	}
 	

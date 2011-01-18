@@ -1,6 +1,7 @@
 package com.modiopera.aventura.controller;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.modiopera.aventura.controller.event.EventEnum;
 import com.modiopera.aventura.model.GameObject;
@@ -26,10 +27,14 @@ public class ConversationsController extends BaseController {
 		return this.conversationMap.get(id);
 	}
 	
+	public Conversation getCurrentConversation() {
+		return currentConversation;
+	}
+	
 	public void startConversation(Conversation conversation) {
 		try {
 			conversation.init();
-			view.setDialogOptions(conversation.getOptions(playerData));
+			view.showConversation(conversation);
 			this.currentConversation = conversation;
 			fireEvent(EventEnum.INITIATE_CONVERSATION);
 		} catch (ConversationException e) {
@@ -37,16 +42,26 @@ public class ConversationsController extends BaseController {
 		}
 	}
 	
-	public void traverseConversation(Dialog dialog) {
+	public void traverseConversation(String dialogId) {
 		try {
-			if (this.currentConversation.chooseOption(dialog)) {
+			if (this.currentConversation.chooseOption(dialogId)) {
 				Dialog toSay = this.currentConversation.getCurrentDialog();
-				view.showDialog(toSay);
-				view.setDialogOptions(this.currentConversation.getOptions(playerData));
 				eventHandler.createEvent(EventEnum.SPEAK_DIALOG, toSay);
 			}
+			view.showConversation(currentConversation);
 		} catch (ConversationException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void initializeConversations() {
+		for (Entry<String, Conversation> entry : this.conversationMap.entrySet()) {
+			try {
+				entry.getValue().init();
+			} catch (ConversationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

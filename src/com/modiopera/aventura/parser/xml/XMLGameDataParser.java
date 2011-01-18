@@ -243,6 +243,7 @@ public class XMLGameDataParser {
                 quest = getQuest(elem.getAttribute("id"));
             } else {
                 quest = new Quest();
+                questMap.put(quest.getId(), quest);
             }
 			quest.setName(elem.getAttribute("name"));
              
@@ -275,7 +276,6 @@ public class XMLGameDataParser {
 			    FactoryFactory.getInstance().getQuestFactory().add(quest);
 			}
 			result.add(quest);
-			_instance.questMap.put(quest.getId(), quest);
 		}
 		return result;
 	}
@@ -405,6 +405,7 @@ public class XMLGameDataParser {
 	            critter = getCritter(elem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_ID));
 	        } else {
 	            critter = new Critter();
+	            this.critterMap.put(critter.getId(), critter);
 	        }
 	        critter.setName(elem.getAttribute(XMLParserConstants.PARSER_ATTRIBUTE_NAME));
 	        critter.setHerdSize(Integer.parseInt(elem.getAttribute("herd")));

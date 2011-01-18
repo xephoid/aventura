@@ -2,6 +2,7 @@ package com.modiopera.aventura.controller.event;
 
 public enum EventEnum {
 	ENTER_TOWN,
+	ENTER_DUNGEON,
 	SPEAK_TO_PERSON,
 	INITIATE_CONVERSATION,
 	SPEAK_DIALOG,

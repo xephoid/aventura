@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.modiopera.aventura.controller.BaseController;
 import com.modiopera.aventura.controller.ConversationsController;
+import com.modiopera.aventura.controller.CritterController;
 import com.modiopera.aventura.controller.ItemController;
 import com.modiopera.aventura.controller.PeopleController;
 import com.modiopera.aventura.controller.PlayerController;
@@ -60,6 +61,10 @@ public abstract class GameSetup {
         ItemController itemController = new ItemController();
         itemController.setItemMap(rawGameData.getItemMap());
         this.controllers.add(itemController);
+        
+        CritterController critterController = new CritterController();
+        critterController.setCritterMap(rawGameData.getCritterMap());
+        this.controllers.add(critterController);
         
         this.setEventHandler(eventHandler);
         for(BaseController controller : this.controllers) {

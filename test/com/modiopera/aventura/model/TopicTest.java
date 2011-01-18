@@ -56,7 +56,7 @@ public class TopicTest {
 		Map<Person, Conversation> map = new HashMap<Person, Conversation>();
 		map.put(person, conversation);
 		topic.setConversations(map);
-		Assert.assertNull(person.getConversations());
+		Assert.assertTrue(person.getConversations().isEmpty());
 		topic.activate();
 		Assert.assertFalse(person.getConversations().isEmpty());
 	}
